@@ -1,22 +1,28 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useEffect, useState } from "react";
+import {
+  createRoutesFromElements,
+  createBrowserRouter,
+  Route,
+  RouterProvider,
+  Outlet,
+} from "react-router-dom";
+import RootLayout from "./rootLayout/RootLayout";
+import HomePge from "./pges/HomePge";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <>
+        <Route element={<RootLayout />}>
+          <Route path="/" element={<HomePge/>} />
+        </Route>
+      </>
+    )
+  );
 
   return (
     <>
-    <div>
-
-      <h1 className="text-blue-600 font-inter">Vite + React</h1>
-
-      <div className="container bg-Botam2">
-      <p className="text-kolapata font-popins">
-        Click on the Vite and React logos to learn more
-      </p>
-      </div>
-    </div>
+      <RouterProvider router={router} />
     </>
   );
 }
