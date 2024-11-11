@@ -16,8 +16,52 @@
     --Botam2: #db4444;
     --BotamHover: #e07575;
     --HoverBotam: #a0bce0;
-    --Swoccho: #a0bce0;
+    --Swoccho: #91919163;
     --AKShor: "Poppins", sans-serif;
     --AKShor2: "Inter", sans-serif;
+  }
+}
+
+@layer component {
+  .menu_link {
+    position: relative;
+  }
+  .menu_link::after {
+    position: absolute;
+    content: "";
+    bottom: -5px;
+    left: 0;
+    width: 115%;
+    height: 2px;
+    background: #000;
+    transform: scale(0);
+  }
+  .menu_link:hover::after {
+    transition: .2s all linear;
+    transform: scale(1);
+  }
+  .amount {
+    position: relative;
+  }
+  .amount::after {
+    position: absolute;
+    content: "0";
+    left: 39%;
+    top: -52%;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    background-color: var(--Secondary2);
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    text-align: center;
+    color: var(--Sada);
+    font-size: 15px;
+  }
+  .userPanel{
+    background: linear-gradient(198deg, rgb(168, 168, 168) 0%, rgba(112, 112, 112, 0.911) 33%, rgba(120, 61, 131, 0.654) 64%, rgba(220,0,241,0.32552693208430916) 100%);
   }
 }
