@@ -27,7 +27,9 @@ const ItemCard = () => {
         <div className="flex justify-center px-3">
           <img src={photo} alt="" className="w-44 h-full object-contain" />
         </div>
-        <div className="w-full bg-black text-Sada text-center opacity-0 group-hover:opacity-100 py-2">Grab</div>
+        <div className="w-full bg-black text-Sada text-center opacity-0 group-hover:opacity-100 py-2">
+          Grab
+        </div>
       </div>
       {/* ======picture======== */}
       {/* =====description section===== */}

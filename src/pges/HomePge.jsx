@@ -1,11 +1,14 @@
-import React from 'react'
+import React from "react";
+import BannerComponent from "../component/banner/BannerComponent";
+import FlashSale from "../component/flashSale/FlashSale";
 
 const HomePge = () => {
   return (
-    <div className='w-full py-12 bg-slate-700'>
-      <h1>this is home page</h1>
+    <div className="w-full">
+      <BannerComponent />
+      <FlashSale />
     </div>
-  )
-}
+  );
+};
 
-export default HomePge
+export default HomePge;

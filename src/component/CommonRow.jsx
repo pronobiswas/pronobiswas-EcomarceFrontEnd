@@ -9,17 +9,28 @@ import Slider from "react-slick";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { HiOutlineArrowRight } from "react-icons/hi";
 import ItemCard from "./ItemCard";
-
-console.log("hori");
+import CategoryCard from "./CategoryCard";
 
 // =======commonRow======
 // =======commonRow======
-const CommonRow = ({ subHeading, heading, offerTime ,buttonTxt, isArrow }) => {
+const CommonRow = ({
+  subHeading = "Today's",
+  heading = "Flash Sale",
+  offerTime = 0,
+  buttonTxt = "",
+  isArrow = true,
+  Card = () => <ProductSkeleton />,
+  partialItemShow = 4,
+  componentData = [],
+  isLoading = true,
+  viewButton = true,
+  rows = 1,
+}) => {
   const SliderRef = useRef(null);
   const settings = {
     dots: false,
     infinite: true,
-    slidesToShow: 5,
+    slidesToShow: partialItemShow,
     slidesToScroll: 1,
     autoplay: true,
     // nextArrow: <SampleNextArrow />,
@@ -40,7 +51,7 @@ const CommonRow = ({ subHeading, heading, offerTime ,buttonTxt, isArrow }) => {
           {/* =====heading pass as props==== */}
           <Heading subHeading={subHeading} heading={heading} />
           {/* ===timer if:has OfferTime=== */}
-          {offerTime && <Timer offerTime={offerTime}/>}
+          {offerTime && <Timer offerTime={offerTime} />}
         </div>
         {/* =======ArrowButton===== */}
         {isArrow && (
@@ -75,17 +86,29 @@ const CommonRow = ({ subHeading, heading, offerTime ,buttonTxt, isArrow }) => {
       <div className="container py-12">
         <div className="slider-container">
           <Slider ref={SliderRef} {...settings}>
-
-            {[...new Array(5)].map((_, index) => (
-              <div key={index}>
-                {/* <ProductSkeleton /> */}
-                <ItemCard />
-              </div>
-            ))}
-            
+            {isLoading
+              ? componentData.map((item, index) => (
+                  <div key={index}>
+                    <ProductSkeleton />
+                  </div>
+                ))
+              : componentData.map((item, index) => (
+                  <div key={index}> 
+                  {Card }
+                  </div>
+                ))}
           </Slider>
+          {console.log(componentData)}
+          
         </div>
       </div>
+      
+      {/* ======viewAllProducts======= */}
+      {viewButton && (
+        <div className="w-full text-center">
+          <span className="viewAllProduct">View All Products</span>
+        </div>
+      )}
     </div>
   );
 };
