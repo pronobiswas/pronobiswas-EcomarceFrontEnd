@@ -4,7 +4,9 @@ import { FaRegHeart } from "react-icons/fa6";
 import { IoEyeOutline } from "react-icons/io5";
 import { FaStar } from "react-icons/fa";
 
-const ItemCard = () => {
+const ItemCard = ({itemData}) => {
+  console.log("i'm from item card" , itemData);
+  
   return (
     // =====main card======
     <div className="w-[270px] group">

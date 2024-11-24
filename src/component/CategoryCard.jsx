@@ -4,19 +4,22 @@ import React from "react";
 
 
 const CategoryCard = ({itemData}) => {
+  console.log("item from category" , itemData);
+  
+  
   return (
       
       <div>
       <div className="warpper container">
-        
-        
-        <div key={itemData?.id} className="w-60 py-8 bg-red-500">
-          <span>
+        <div  className="w-40 py-6 border-[1px] border-DhusorLekhoni flex flex-col items-center gap-3">
+          <h2 className="text-3xl">
             {itemData?itemData.img:"img"}
-          </span>
-          <span>{itemData?itemData.name:"name"}</span>
+          </h2>
+          <h4 className="text-base font-popins">
+            {itemData?itemData.name:"name"}
+            </h4>
         </div>
-        {console.log(itemData)}
+  
       </div>
     </div>
   );

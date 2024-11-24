@@ -13,6 +13,8 @@ import CategoryCard from "./CategoryCard";
 
 // =======commonRow======
 // =======commonRow======
+console.log("horibol");
+
 const CommonRow = ({
   subHeading = "Today's",
   heading = "Flash Sale",
@@ -21,7 +23,7 @@ const CommonRow = ({
   isArrow = true,
   Card = () => <ProductSkeleton />,
   partialItemShow = 4,
-  componentData = [],
+  componentData = [...new Array(4)],
   isLoading = true,
   viewButton = true,
   rows = 1,
@@ -36,6 +38,7 @@ const CommonRow = ({
     // nextArrow: <SampleNextArrow />,
     // prevArrow: <SamplePrevArrow />,
   };
+
   const next = () => {
     SliderRef.current.slickPrev();
   };
@@ -43,6 +46,8 @@ const CommonRow = ({
     SliderRef.current.slickNext();
     console.log("prev");
   };
+  
+
   return (
     <div className="my-8">
       {/* =====header section========= */}
@@ -87,22 +92,22 @@ const CommonRow = ({
         <div className="slider-container">
           <Slider ref={SliderRef} {...settings}>
             {isLoading
-              ? componentData.map((item, index) => (
+              ? [...new Array(4)].map((_, index) => (
                   <div key={index}>
                     <ProductSkeleton />
                   </div>
                 ))
-              : componentData.map((item, index) => (
-                  <div key={index}> 
-                  {Card }
+                : componentData.map((item, index) => (
+                  <div key={index}>
+                    {Card}
+                    {console.log(item)}
                   </div>
+                  
                 ))}
           </Slider>
-          {console.log(componentData)}
-          
         </div>
       </div>
-      
+
       {/* ======viewAllProducts======= */}
       {viewButton && (
         <div className="w-full text-center">
