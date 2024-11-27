@@ -4,8 +4,6 @@ import React from "react";
 
 
 const CategoryCard = ({itemData}) => {
-  console.log("item from category" , itemData);
-  
   
   return (
       

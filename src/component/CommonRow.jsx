@@ -99,7 +99,7 @@ const CommonRow = ({
                 ))
                 : componentData.map((item, index) => (
                   <div key={index}>
-                    {Card}
+                    <Card itemData={item}/>
                     {console.log(item)}
                   </div>
                   

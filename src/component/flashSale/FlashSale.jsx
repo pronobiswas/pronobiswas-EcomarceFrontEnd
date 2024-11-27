@@ -11,7 +11,7 @@ const FlashSale = () => {
   return (
     <div className="w-full mb-8 border-b-[1px] ">
       <CommonRow
-        Card = {<ItemCard/>}
+        Card = {ItemCard}
         subHeading={"Today's"}
         heading={"Fresh Sale"}
         offerTime={4}

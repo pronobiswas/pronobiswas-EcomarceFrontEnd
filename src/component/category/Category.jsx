@@ -65,7 +65,7 @@ const Category = () => {
     <div className="container">
       <div className="warpper">
         <CommonRow
-          Card={<CategoryCard/>}
+          Card={CategoryCard}
           subHeading={"Categories"}
           heading={"Browse By Category"}
           isArrow={true}
