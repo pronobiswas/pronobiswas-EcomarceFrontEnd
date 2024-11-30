@@ -2,6 +2,7 @@ import React from "react";
 import BannerComponent from "../component/banner/BannerComponent";
 import FlashSale from "../component/flashSale/FlashSale";
 import Category from "../component/category/Category";
+import BestSellingProduct from "../component/bestSellingProdct/BestSellingProduct";
 
 
 const HomePge = () => {
@@ -10,6 +11,7 @@ const HomePge = () => {
       <BannerComponent />
       <FlashSale />
       <Category/>
+      <BestSellingProduct/>
     </div>
   );
 };

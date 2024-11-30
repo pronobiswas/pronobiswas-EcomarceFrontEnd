@@ -18,14 +18,14 @@ console.log("horibol");
 const CommonRow = ({
   subHeading = "Today's",
   heading = "Flash Sale",
-  offerTime = 0,
+  offerTime = "",
   buttonTxt = "",
-  isArrow = true,
+  isArrow = false,
   Card = () => <ProductSkeleton />,
   partialItemShow = 4,
-  componentData = [...new Array(4)],
-  isLoading = true,
-  viewButton = true,
+  componentData = [],
+  isLoading = false,
+  viewButton = false,
   rows = 1,
 }) => {
   const SliderRef = useRef(null);
@@ -46,7 +46,6 @@ const CommonRow = ({
     SliderRef.current.slickNext();
     console.log("prev");
   };
-  
 
   return (
     <div className="my-8">
@@ -87,22 +86,21 @@ const CommonRow = ({
           </div>
         )}
       </div>
+
       {/* ===slider section====== */}
       <div className="container py-12">
         <div className="slider-container">
           <Slider ref={SliderRef} {...settings}>
             {isLoading
               ? [...new Array(4)].map((_, index) => (
-                  <div key={index}>
+                  <div key={index} className="">
                     <ProductSkeleton />
                   </div>
                 ))
-                : componentData.map((item, index) => (
-                  <div key={index}>
-                    <Card itemData={item}/>
-                    {console.log(item)}
+              : componentData.map((item, index) => (
+                  <div  className="shrink  w-60" key={item?.key}>
+                    <Card itemData={item} />
                   </div>
-                  
                 ))}
           </Slider>
         </div>

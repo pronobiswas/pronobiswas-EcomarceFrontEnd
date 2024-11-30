@@ -24,7 +24,7 @@
 
 @layer component {
   .viewAllProduct {
-    @apply font-popins text-base text-Sada bg-Secondary2 py-4 px-12 rounded;
+    @apply font-popins text-base text-Sada bg-Secondary2 py-4 px-12 rounded hover:cursor-pointer;
   }
   .menu_link {
     position: relative;

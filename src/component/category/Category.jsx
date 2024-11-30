@@ -9,7 +9,7 @@ import { FaCameraRetro } from "react-icons/fa";
 import { FaHeadphonesSimple } from "react-icons/fa6";
 import { GiConsoleController } from "react-icons/gi";
 import { RiComputerLine } from "react-icons/ri";
-import ItemCard from "../ItemCard";
+
 
 const categorybrowse = [
   {
@@ -60,6 +60,9 @@ const categorybrowse = [
   },
 ];
 
+console.log(categorybrowse);
+
+
 const Category = () => {
   return (
     <div className="container">
@@ -69,10 +72,8 @@ const Category = () => {
           subHeading={"Categories"}
           heading={"Browse By Category"}
           isArrow={true}
-          partialItemShow={3}
+          partialItemShow={8}
           componentData={categorybrowse}
-          isLoading={false}
-          viewButton={false}
           rows={1}
         />
       </div>

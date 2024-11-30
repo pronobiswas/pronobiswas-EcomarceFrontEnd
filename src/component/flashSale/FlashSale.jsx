@@ -5,21 +5,24 @@ import ItemCard from "../ItemCard";
 import CategoryCard from "../CategoryCard";
 import CommonRow from "../CommonRow";
 
-
+import {useGetAllProductsQuery} from '../../helper/reduxToolkit/apis/productAPI'
 
 const FlashSale = () => {
+  const { data, error, isLoading } = useGetAllProductsQuery()
+  
+  console.log(data);
+  
   return (
     <div className="w-full mb-8 border-b-[1px] ">
       <CommonRow
         Card = {ItemCard}
         subHeading={"Today's"}
         heading={"Fresh Sale"}
-        offerTime={4}
-        buttonTxt={""}
         isArrow={true}
-        isLoading={false}
-        partialItemShow={5}
-        componentData={[...new Array(6)]}
+        partialItemShow={6}
+        componentData={data?.products}
+        isLoading={isLoading}
+        viewButton={true}
       />
     </div>
   );
