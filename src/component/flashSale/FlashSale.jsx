@@ -4,11 +4,10 @@ import Timer from "../Timer";
 import ItemCard from "../ItemCard";
 import CategoryCard from "../CategoryCard";
 import CommonRow from "../CommonRow";
-
 import {useGetAllProductsQuery} from '../../helper/reduxToolkit/apis/productAPI'
 
 const FlashSale = () => {
-  const { data, error, isLoading } = useGetAllProductsQuery()
+  const { data, error, isLoading } = useGetAllProductsQuery();
   
   console.log(data);
   
