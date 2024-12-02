@@ -35,6 +35,7 @@ const CommonRow = ({
     slidesToShow: partialItemShow,
     slidesToScroll: 1,
     autoplay: true,
+    rtl: true
     // nextArrow: <SampleNextArrow />,
     // prevArrow: <SamplePrevArrow />,
   };

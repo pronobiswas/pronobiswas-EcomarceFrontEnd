@@ -65,8 +65,8 @@ console.log(categorybrowse);
 
 const Category = () => {
   return (
-    <div className="container">
-      <div className="warpper">
+    <div className="my-20">
+      <div className="warpper container">
         <CommonRow
           Card={CategoryCard}
           subHeading={"Categories"}
