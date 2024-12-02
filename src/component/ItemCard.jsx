@@ -4,12 +4,13 @@ import { FaRegHeart } from "react-icons/fa6";
 import { IoEyeOutline } from "react-icons/io5";
 import { FaStar } from "react-icons/fa";
 import useCalculateDiscount from "../helper/hooks/useCalculateDiscount";
+import StarComponent from "./StarComponent";
 
 const ItemCard = ({ itemData }) => {
   return (
     // =====main card======
     <div className="w-60 group hover:cursor-pointer">
-      <div className="w-full flex flex-col bg-AbchaSada">
+      <div className="w-full min-h60 flex flex-col bg-AbchaSada">
         <div className=" w-full relative">
           <div className="flex justify-between px-3 pt-3">
             {/* =====discount Prsentances===== */}
@@ -53,9 +54,11 @@ const ItemCard = ({ itemData }) => {
 
       {/* =====description section===== */}
       <div className="mt-4">
-        <p className="text-base font-popins font-semibold text-black">
+        {/* ======title====== */}
+        <p className="text-base font-popins font-semibold text-black max-w-56 text-ellipsis truncate">
           {itemData ? itemData.title : "HAVIT HV-G92 Gamepad"}
         </p>
+        {/* =====netprices====== */}
         <p className="my-2">
           {itemData ? (
             <span className="text-Secondary2 font-popins">
@@ -65,31 +68,19 @@ const ItemCard = ({ itemData }) => {
               ).toFixed(2)}
             </span>
           ) : (
-            // ======netPrice=====
+            // =======unoffered price======= 
             <span className="text-Secondary2 font-popins">$0.00</span>
           )}
-          {/* =======unoffered price======= */}
           <span className="font-popins line-through ml-4 text-DhusorLekhoni">
             ${itemData.price.toFixed(2)}
           </span>
         </p>
         {/* =======stars====== */}
-        <div className="star">
+        <div className="star flex gap-3">
           <div className="flex items-center text-yellow-400">
-            <span>
-              <FaStar />
-            </span>
-            <span>
-              <FaStar />
-            </span>
-            <span>
-              <FaStar />
-            </span>
-            <span>
-              <FaStar />
-            </span>
-            <span>(88)</span>
+            <StarComponent/>
           </div>
+            <span>(88)</span>
         </div>
       </div>
     </div>
