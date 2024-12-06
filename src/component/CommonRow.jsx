@@ -2,14 +2,15 @@ import React, { useRef } from "react";
 import { Component } from "react";
 import Heading from "./Heading";
 import Timer from "./Timer";
-import { FaAngleDoubleRight } from "react-icons/fa";
+
 import ProductSkeleton from "./ProductSkeleton";
 // ===slider==
 import Slider from "react-slick";
-import { HiOutlineArrowLeft } from "react-icons/hi";
-import { HiOutlineArrowRight } from "react-icons/hi";
+
+import { HiOutlineArrowLeft, HiOutlineArrowRight, HiOutlineArrowSmRight } from "react-icons/hi";
 import ItemCard from "./ItemCard";
-import CategoryCard from "./CategoryCard";
+import { FaAngleDoubleRight } from "react-icons/fa";
+
 
 // =======commonRow======
 // =======commonRow======
@@ -35,7 +36,10 @@ const CommonRow = ({
     slidesToShow: partialItemShow,
     slidesToScroll: 1,
     autoplay: true,
-    rtl: true
+    rtl: true,
+    rows :rows,
+    rowGap :30
+    
     // nextArrow: <SampleNextArrow />,
     // prevArrow: <SamplePrevArrow />,
   };

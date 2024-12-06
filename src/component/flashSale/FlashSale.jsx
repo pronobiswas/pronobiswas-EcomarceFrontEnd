@@ -1,15 +1,12 @@
 import React from "react";
 import Heading from "../Heading";
-import Timer from "../Timer";
 import ItemCard from "../ItemCard";
-import CategoryCard from "../CategoryCard";
 import CommonRow from "../CommonRow";
 import {useGetAllProductsQuery} from '../../helper/reduxToolkit/apis/productAPI'
 
 const FlashSale = () => {
   const { data, error, isLoading } = useGetAllProductsQuery();
   
-  console.log(data);
   
   return (
     <div className="w-full mb-8 border-b-[1px] ">

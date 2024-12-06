@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import RootLayout from "./rootLayout/RootLayout";
 import HomePge from "./pges/HomePge";
+import ProductsPage from "./pges/ProductsPage";
 
 function App() {
   const router = createBrowserRouter(
@@ -15,6 +16,7 @@ function App() {
       <>
         <Route element={<RootLayout />}>
           <Route path="/" element={<HomePge/>} />
+          <Route path="/product" element={<ProductsPage/>} />
         </Route>
       </>
     )

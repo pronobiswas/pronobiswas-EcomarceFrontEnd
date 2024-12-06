@@ -9,7 +9,7 @@ import StarComponent from "./StarComponent";
 const ItemCard = ({ itemData }) => {
   return (
     // =====main card======
-    <div className="w-60 group hover:cursor-pointer">
+    <div className="w-60 group hover:cursor-pointer pb-10">
       <div className="w-full min-h60 flex flex-col bg-AbchaSada">
         <div className=" w-full relative">
           <div className="flex justify-between px-3 pt-3">
@@ -72,7 +72,7 @@ const ItemCard = ({ itemData }) => {
             <span className="text-Secondary2 font-popins">$0.00</span>
           )}
           <span className="font-popins line-through ml-4 text-DhusorLekhoni">
-            ${itemData.price.toFixed(2)}
+            ${itemData?itemData.price.toFixed(2):300}
           </span>
         </p>
         {console.log(itemData)
@@ -80,7 +80,7 @@ const ItemCard = ({ itemData }) => {
         {/* =======stars====== */}
         <div className="star flex gap-3">
           <div className="flex items-center text-yellow-400">
-            <StarComponent reting={itemData?.rating}/>
+            <StarComponent reting={itemData?itemData.rating:4}/>
           </div>
             <span>(88)</span>
         </div>

@@ -1,14 +1,13 @@
 import React from "react";
 import CommonRow from "../CommonRow";
 import ProductSkeleton from "../ProductSkeleton";
-import CategoryCard from "../CategoryCard";
-
 import { BsSmartwatch } from "react-icons/bs";
 import { CiMobile4 } from "react-icons/ci";
 import { FaCameraRetro } from "react-icons/fa";
 import { FaHeadphonesSimple } from "react-icons/fa6";
 import { GiConsoleController } from "react-icons/gi";
 import { RiComputerLine } from "react-icons/ri";
+import CategoryCard from "./CategoryCard";
 
 
 const categorybrowse = [
@@ -60,7 +59,6 @@ const categorybrowse = [
   },
 ];
 
-console.log(categorybrowse);
 
 
 const Category = () => {

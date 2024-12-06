@@ -26,6 +26,15 @@
   .viewAllProduct {
     @apply font-popins text-base text-Sada bg-Secondary2 py-4 px-12 rounded hover:cursor-pointer;
   }
+  .footerMenuHeading{
+    @apply !text-2xl  !mb-6 !font-popins
+  }
+  .footerUl{
+    @apply flex flex-col gap-y-4 font-popins [&>li:hover]:underline cursor-pointer
+  }
+  .slick-track{
+    gap: 30px;
+  }
   .menu_link {
     position: relative;
   }
