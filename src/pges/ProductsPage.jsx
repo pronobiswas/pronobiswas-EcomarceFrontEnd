@@ -4,19 +4,16 @@ import { useGetAllCategoryQuery } from "../helper/reduxToolkit/apis/category.Api
 import RightProducts from "../component/productComponent/RightProducts";
 import BradeCrumb from "../component/commonComponent/BradeCrumb";
 
-
-
 const ProductsPage = () => {
   // ========featch category fdata with rtk query======
   const { data, isLoading, error } = useGetAllCategoryQuery();
 
-  
-  
   return (
     <div className="container">
       {/* =========breadCrumb===== */}
-      <BradeCrumb/>
-        <span>home /</span>
+      <div className="w-full pt-4 pb-6">
+        <BradeCrumb />
+      </div>
       <div className="warpper w-full flex gap-3">
         {/* =======shop by category======== */}
         <div className="aside w-2/6 lg:w-1/6 h-full max-h-screen ">
@@ -24,7 +21,7 @@ const ProductsPage = () => {
         </div>
         {/* ========shop by products====== */}
         <div className="beside w-4/6 lg:w-5/6 h-full min-h-screen">
-          <RightProducts/>
+          <RightProducts />
         </div>
       </div>
     </div>
