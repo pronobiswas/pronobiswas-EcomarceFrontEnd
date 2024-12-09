@@ -11,6 +11,7 @@ const ItemCard = ({ itemData }) => {
     // =====main card======
     <div className="w-60 group hover:cursor-pointer pb-10">
       <div className="w-full min-h60 flex flex-col bg-AbchaSada">
+        {/* ======discount persentences====== */}
         <div className=" w-full relative">
           <div className="flex justify-between px-3 pt-3">
             {/* =====discount Prsentances===== */}

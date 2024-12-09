@@ -14,6 +14,7 @@ const FlashSale = () => {
         Card = {ItemCard}
         subHeading={"Today's"}
         heading={"Fresh Sale"}
+        offerTime={"3"}
         isArrow={true}
         partialItemShow={6}
         componentData={data?.products}

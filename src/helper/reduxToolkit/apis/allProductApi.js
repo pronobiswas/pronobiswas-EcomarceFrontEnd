@@ -1,15 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 // Define a service using a base URL and expected endpoints
-export const categoryApi = createApi({
-  reducerPath: "categoryApi",
+export const allProductApi = createApi({
+  reducerPath: "allProductApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4000/" }),
   endpoints: (builder) => ({
-    GetAllCategory: builder.query({
-      query: () => `/allCategory`,
+    GetMyProducts: builder.query({
+      query: () => `/allProduct`,
     }),
   }),
 });
 
 // auto-generated based on the defined endpoints
-export const { useGetAllCategoryQuery } = categoryApi;
+export const { useGetMyProductsQuery } = allProductApi;

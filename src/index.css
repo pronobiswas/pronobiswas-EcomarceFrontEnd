@@ -26,13 +26,13 @@
   .viewAllProduct {
     @apply font-popins text-base text-Sada bg-Secondary2 py-4 px-12 rounded hover:cursor-pointer;
   }
-  .footerMenuHeading{
-    @apply !text-2xl  !mb-6 !font-popins
+  .footerMenuHeading {
+    @apply !text-2xl  !mb-6 !font-popins;
   }
-  .footerUl{
-    @apply flex flex-col gap-y-4 font-popins [&>li:hover]:underline cursor-pointer
+  .footerUl {
+    @apply flex flex-col gap-y-4 font-popins [&>li:hover]:underline cursor-pointer;
   }
-  .slick-track{
+  .slick-track {
     gap: 30px;
   }
   .menu_link {
@@ -119,4 +119,77 @@
   /* .viewallBtn::after{
 
   } */
+   
+  .circle1 {
+    box-sizing: border-box;
+    width: 40px;
+    height: 40px;
+    outline: 2px solid #d0ffee;
+    border-radius: 50%;
+    transform: skew(235deg, 53deg);
+    position: relative;
+  }
+  .circle1::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    width: 40px;
+    height: 40px;
+    /* border: 5px solid #9696ff; */
+    outline: 2px solid #cce2fc;
+    border-radius: 50%;
+    transform: skew(294deg, 36deg);
+  }
+  .circle1::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    width: 40px;
+    height: 40px;
+    /* border: 5px solid #e9e9ea; */
+    outline: 2px solid #bcfff8;
+    border-radius: 50%;
+    transform: skew(146deg, 65deg);
+  }
+  .circle2 {
+    position: absolute;
+    box-sizing: border-box;
+    width: 36px;
+    height: 36px;
+    outline: 2px solid #ffadfc;
+    border-radius: 50%;
+    transform: skew(77deg,42deg);
+    position: relative;
+  }
+  .circle2::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 06px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    /* border: 5px solid #9696ff; */
+    outline: 2px solid #fd8147;
+    border-radius: 50%;
+    transform: skew(291deg, -36deg);
+  }
+  .circle2::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 03px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    /* border: 5px solid #9696ff; */
+    outline: 2px solid #c1b700;
+    border-radius: 50%;
+    transform: skew(282deg, -24deg);
+  }
+ 
 }
