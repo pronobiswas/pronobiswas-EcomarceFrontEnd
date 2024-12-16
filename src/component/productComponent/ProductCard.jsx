@@ -11,18 +11,18 @@ const ProductCard = ({ itemData ,isLoading}) => {
       {/* ====fullcard==== */}
       <div className="w-60 group hover:cursor-pointer pb-10">
         {/* ======discount persentences======== */}
-        <div className="w-full min-h60 flex flex-col bg-AbchaSada">
+        <div className="w-full min-h60 flex flex-col bg-AbchaSada relative">
           {/* ======discount persentences====== */}
-          <div className=" w-full relative">
+          <div className=" w-full absolute">
             <div className="flex justify-between px-3 pt-3">
               {/* =====discount Prsentances===== */}
               {itemData ? (
                 <span className=" bg-Secondary2 px-3 py-1 rounded font-popins text-[12px] text-Sada">
-                  {itemData.discountPrice}
+                  {itemData.discountPercent}%
                 </span>
               ) : (
                 <span className=" bg-Secondary2 px-3 py-1 rounded font-popins text-[12px] text-Sada">
-                  -40%
+                  -00%
                 </span>
               )}
               {/* ====icons== */}
@@ -65,7 +65,7 @@ const ProductCard = ({ itemData ,isLoading}) => {
               <span className="text-Secondary2 font-popins">
                 {useCalculateDiscount(
                   itemData.price,
-                  itemData.discountPrice
+                  itemData.discountPercent
                 ).toFixed(2)}
               </span>
             ) : (
@@ -82,7 +82,7 @@ const ProductCard = ({ itemData ,isLoading}) => {
             <div className="flex items-center text-yellow-400">
               <StarComponent reting={itemData ? itemData.rating : 4} />
             </div>
-            <span>(88)</span>
+            <span>( {itemData ? itemData.review.length :"0"} )</span>
           </div>
         </div>
       </div>

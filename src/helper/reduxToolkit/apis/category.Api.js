@@ -8,8 +8,11 @@ export const categoryApi = createApi({
     GetAllCategory: builder.query({
       query: () => `/allCategory`,
     }),
+    GetAllBanner : builder.query({
+      query : ()=>  `/banner`,
+    }),
   }),
 });
 
 // auto-generated based on the defined endpoints
-export const { useGetAllCategoryQuery } = categoryApi;
+export const { useGetAllCategoryQuery , useGetAllBannerQuery } = categoryApi;

@@ -76,8 +76,6 @@ const ItemCard = ({ itemData }) => {
             ${itemData?itemData.price.toFixed(2):300}
           </span>
         </p>
-        {console.log(itemData)
-        }
         {/* =======stars====== */}
         <div className="star flex gap-3">
           <div className="flex items-center text-yellow-400">

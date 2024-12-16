@@ -8,8 +8,7 @@ import ItemCard from "../ItemCard";
 const OurProdutcs = () => {
  
   const { data, error, isLoading } = useGetAllProductsQuery();
-  console.log("our product data", data);
-  
+
   return (
     <div>
       <CommonRow

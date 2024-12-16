@@ -5,9 +5,16 @@ import Slider from "react-slick";
 import { category } from "../../../data.js";
 import { FaAngleRight } from "react-icons/fa";
 import slideImg from "../../../public/SlideImg.png";
+import {useGetAllBannerQuery} from '../../helper/reduxToolkit/apis/category.Api.js'
 
 const BannerComponent = () => {
+const bannerInfo = useGetAllBannerQuery();
+// console.log(bannerInfo.data.data);
+
+  
   const [currentSlide, setcurrentSlide] = useState(0);
+
+  
   const settings = {
     dots: true,
     // infinite: true,
@@ -16,7 +23,7 @@ const BannerComponent = () => {
     autoplay: true,
     speed: 700,
     autoplaySpeed: 2000,
-    cssEase: "linear",
+    cssEase: "ease-in-out",
     arrows: false,
     appendDots: (dots) => (
       <div
@@ -84,11 +91,11 @@ const BannerComponent = () => {
           <div className="warper w-full h-full">
             {/* ====slider=== */}
             <Slider {...settings}>
-              {[...new Array(10)].map((_, index) => (
+              {bannerInfo?.data?.data?.map((bannerImage, index) => (
                 <div key={index} className="w-ful h-[380px]">
                   <img
-                    src={slideImg}
-                    alt="img"
+                    src={bannerImage.image}
+                    alt="png"
                     className="w-full h-full object-cover"
                   />
                 </div>

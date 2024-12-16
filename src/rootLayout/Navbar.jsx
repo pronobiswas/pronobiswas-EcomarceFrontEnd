@@ -27,22 +27,27 @@ const Navbar = () => {
     });
   }, [userAccountRef]);
 
+  // =======nevigation Item======
   const navItem = [
     {
       id: 1,
       item: "Home",
+      nevigationPaths:"/"
     },
     {
       id: 2,
       item: "Contact",
+      nevigationPaths:"/"
     },
     {
       id: 3,
       item: "About",
+      nevigationPaths:"/"
     },
     {
       id: 4,
       item: "Sign Up",
+      nevigationPaths:"/"
     },
   ];
 

@@ -13,7 +13,7 @@ const FlashSale = () => {
       <CommonRow
         Card = {ItemCard}
         subHeading={"Today's"}
-        heading={"Fresh Sale"}
+        heading={"Flash Sale"}
         offerTime={"3"}
         isArrow={true}
         partialItemShow={6}
