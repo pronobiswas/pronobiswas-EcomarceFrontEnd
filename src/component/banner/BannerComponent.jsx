@@ -5,11 +5,13 @@ import Slider from "react-slick";
 import { category } from "../../../data.js";
 import { FaAngleRight } from "react-icons/fa";
 import slideImg from "../../../public/SlideImg.png";
-import {useGetAllBannerQuery} from '../../helper/reduxToolkit/apis/category.Api.js'
+import {useGetAllBannerQuery} from '../../helper/reduxToolkit/apis/Exclusive.Api.js'
 
 const BannerComponent = () => {
+  const [bannerinfo , setbannerinfo]= useState()
 const bannerInfo = useGetAllBannerQuery();
-// console.log(bannerInfo.data.data);
+console.log(bannerInfo);
+
 
   
   const [currentSlide, setcurrentSlide] = useState(0);

@@ -32,22 +32,22 @@ const Navbar = () => {
     {
       id: 1,
       item: "Home",
-      nevigationPaths:"/"
+      nevigationPaths: "/",
     },
     {
       id: 2,
       item: "Contact",
-      nevigationPaths:"/"
+      nevigationPaths: "/",
     },
     {
       id: 3,
-      item: "About",
-      nevigationPaths:"/"
+      item: "product",
+      nevigationPaths: "/product",
     },
     {
       id: 4,
       item: "Sign Up",
-      nevigationPaths:"/"
+      nevigationPaths: "/",
     },
   ];
 
@@ -62,14 +62,18 @@ const Navbar = () => {
             </span>
           </div>
           {/* =====nav item nemu====== */}
-          <div className="nevigationMenu hidden lg:block">
+          <div className="nevigationMenu  lg:block">
             <ul className="flex gap-x-12">
               {navItem?.map((nav) => (
                 <li key={nav.id} className="menu_link font-popins text-[16px]">
                   <NavLink
-                    to="/"
-                    className={({ isActive, isPending }) =>
-                      isPending ? "pending" : isActive ? "active" : ""
+                    to={nav.nevigationPaths}
+                    className={({ isPending, isActive }) =>
+                      isPending
+                        ? "text-black text-[17px] font-normal font-popins"
+                        : isActive
+                        ? "text-red-500 text-[17px] font-normal font-popins"
+                        : "text-black text-[17px] font-normal font-popins"
                     }
                   >
                     {nav.item}
@@ -79,7 +83,7 @@ const Navbar = () => {
             </ul>
           </div>
           {/* ======Others shop==== */}
-          <div className=" flex items-center gap-x-6 relative">
+          <div className="hidden flex items-center gap-x-6 relative">
             {/* ====searchBox==== */}
             <div className="searchBox searchInput flex items-center gap-2 bg-AbchaSada px-2 py-2 rounded  ">
               <input

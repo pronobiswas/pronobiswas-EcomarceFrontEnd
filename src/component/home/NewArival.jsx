@@ -12,8 +12,9 @@ const NewArival = () => {
       <div className="header">
         <Heading subHeading={"Featured"} heading={"New Arrival"} />
       </div>
+
       {/* ==========content========== */}
-      <div className="row w-full flex gap-4 py-5">
+      <div className="row w-full flex gap-4 flex-col md:flex-row py-5">
         {/* -----full hight box half1/2  playStation
         5----- */}
         <div className="aside w-1/2 max-w-[600px] h-[570px] bg-black text-Sada relative rounded">
@@ -80,6 +81,7 @@ const NewArival = () => {
           </div>
         </div>
       </div>
+
     </div>
   );
 };

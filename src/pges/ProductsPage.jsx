@@ -1,6 +1,6 @@
 import React from "react";
 import LeftSideFilter from "../component/productComponent/LeftSideFilter";
-import { useGetAllCategoryQuery } from "../helper/reduxToolkit/apis/category.Api";
+import { useGetAllCategoryQuery } from "../helper/reduxToolkit/apis/Exclusive.Api";
 import RightProducts from "../component/productComponent/RightProducts";
 import BradeCrumb from "../component/commonComponent/BradeCrumb";
 
