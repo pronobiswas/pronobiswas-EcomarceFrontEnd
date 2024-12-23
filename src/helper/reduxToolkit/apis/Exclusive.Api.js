@@ -11,8 +11,15 @@ export const exclusiveApi = createApi({
     GetAllBanner: builder.query({
       query: () => `/banner`,
     }),
+    GetSingleProduct: builder.query({
+      query: (id) => `/productDetails/${id}`,
+    }),
   }),
 });
 
 // auto-generated based on the defined endpoints
-export const { useGetAllCategoryQuery, useGetAllBannerQuery } = exclusiveApi;
+export const {
+  useGetAllCategoryQuery,
+  useGetAllBannerQuery,
+  useGetSingleProductQuery,
+} = exclusiveApi;

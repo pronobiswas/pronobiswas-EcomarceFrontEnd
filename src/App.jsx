@@ -11,16 +11,21 @@ import HomePge from "./pges/HomePge";
 import ProductsPage from "./pges/ProductsPage";
 import LogInPage from "./pges/LogInPage";
 import SingleProductPage from "./pges/SingleProductPage";
+import ImageGlary from "./component/productComponent/singleProductComponent/ImageGlary";
+import SpecificProductDetails from "./component/productComponent/singleProductComponent/SpecificProductDetails";
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route element={<RootLayout />}>
-          <Route path="/" element={<HomePge/>} />
-          <Route path="/singleproduct" element={<SingleProductPage/>} />
-          <Route path="/auth/login" element={<LogInPage/>} />
-          <Route path="/product" element={<ProductsPage/>} />
+        <Route>
+          <Route element={<RootLayout />}>
+            <Route path="/" element={<HomePge />} />
+            <Route path="/productDetails/:id" element={<SingleProductPage />} />
+            <Route path="/auth/login" element={<LogInPage />} />
+            <Route path="/product" element={<ProductsPage />} />
+          </Route>
+          <Route path="/SpecificProductDetails" element={<SpecificProductDetails />} />
         </Route>
       </>
     )

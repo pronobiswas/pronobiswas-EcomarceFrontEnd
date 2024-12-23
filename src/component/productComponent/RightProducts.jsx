@@ -10,12 +10,13 @@ import { useGetMyProductsQuery } from "../../helper/reduxToolkit/apis/allProduct
 
 const RightProducts = () => {
   const { data, isLoading, error } = useGetMyProductsQuery();
-  console.log(data.data.length);
   
   const [product, setproduct] = useState([]);
   const [page, setpage] = useState(1);
   const [pagePerShow, setpagePerShow] = useState(9);
   let totalPage = data?.data?.length / 9;
+  
+  
   //   =========pagination funtionality=========
   const handlePerItem = (index) => {
     if (index > 0 && index <= Math.ceil(totalPage)) {
@@ -28,9 +29,10 @@ const RightProducts = () => {
 
   }
   // handleItem function=========
-  const handleItem = (itemId) => {
-    console.log(itemId);
-  };
+  // const handleItem = (itemId) => {
+  //   console.log(itemId);
+  // };
+  
   
   return (
 
@@ -40,9 +42,10 @@ const RightProducts = () => {
       {isLoading ? (
         <span>skeliton</span>
       ) : (
+        
         <ul className="flex flex-wrap items-center justify-between gap-y-5">
           {data?.data
-            .slice(page * 3-3, page * pagePerShow)
+            .slice(page * 9-9, page * pagePerShow)
             .map((item, index) => (
               <li onClick={() => handleItem(item._id)}>
                 <ProductCard itemData={item} />
@@ -69,7 +72,7 @@ const RightProducts = () => {
           </li>
           {/* =====Indexing====== */}
           {[...new Array(Math.ceil(totalPage) || 8)].map((_, index) => (
-            <li>
+            <li key={index}>
               <span
                 href="#"
                 className={

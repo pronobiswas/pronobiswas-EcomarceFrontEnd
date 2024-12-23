@@ -8,10 +8,9 @@ const BradeCrumb = () => {
   const pathNameArray = pathname.split("/").filter((path) => path);
 
   let BreadcrumdPath = "";
-  console.log(pathNameArray);
 
   return (
-    <div className="flex gap-2">
+    <div className="w-full flex gap-2">
       <span>Home / </span>
       {/* =======map the paath array===== */}
       {pathNameArray.map((name, index) => {
