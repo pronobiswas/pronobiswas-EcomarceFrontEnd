@@ -17,8 +17,6 @@ const Navbar = () => {
   useEffect(() => {
     // ====clickEvent on Window =======
     window.addEventListener("click", (event) => {
-      console.log(userAccountRef.current.contains(event.target));
-
       if (userAccountRef.current.contains(event.target)) {
         setAccount(true);
       } else {

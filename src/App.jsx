@@ -21,11 +21,15 @@ function App() {
         <Route>
           <Route element={<RootLayout />}>
             <Route path="/" element={<HomePge />} />
-            <Route path="/productDetails/:id" element={<SingleProductPage />} />
+            <Route path="/productDetails" element={<SingleProductPage />} />
             <Route path="/auth/login" element={<LogInPage />} />
             <Route path="/product" element={<ProductsPage />} />
+
+            <Route
+              path="/product/:id"
+              element={<SingleProductPage />}
+            />
           </Route>
-          <Route path="/SpecificProductDetails" element={<SpecificProductDetails />} />
         </Route>
       </>
     )

@@ -5,11 +5,17 @@ export const exclusiveApi = createApi({
   reducerPath: "categoryApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4000/" }),
   endpoints: (builder) => ({
-    GetAllCategory: builder.query({
-      query: () => `/allCategory`,
-    }),
     GetAllBanner: builder.query({
       query: () => `/banner`,
+    }),
+    GetAllProducts: builder.query({
+      query: () => `/allProduct`,
+    }),
+    GetFlashSaleProducts: builder.query({
+      query: () => `/flashSale`,
+    }),
+    GetAllCategory: builder.query({
+      query: () => `/allCategory`,
     }),
     GetSingleProduct: builder.query({
       query: (id) => `/productDetails/${id}`,
@@ -22,4 +28,6 @@ export const {
   useGetAllCategoryQuery,
   useGetAllBannerQuery,
   useGetSingleProductQuery,
+  useGetAllProductsQuery,
+  useGetFlashSaleProductsQuery,
 } = exclusiveApi;

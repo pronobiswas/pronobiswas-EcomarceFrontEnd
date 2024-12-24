@@ -10,10 +10,10 @@ const ProductCard = ({ itemData, isLoading }) => {
   const handleItemDetails = (id) => {
     console.log(id);
   };
-  
+
   return (
     <>
-      <Link to={`/productDetails/${itemData._id}`}> 
+      <Link to={`/product/${itemData._id}`}>
         {/* ====fullcard==== */}
         {/* onClick={()=>handleItemDetails(itemData._id)} */}
         <div className="w-60 group hover:cursor-pointer pb-10">

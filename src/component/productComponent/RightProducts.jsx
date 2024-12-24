@@ -6,10 +6,12 @@ import { FaRegHeart } from "react-icons/fa6";
 import { IoEyeOutline } from "react-icons/io5";
 import photo from "../../../public/girls.png";
 import StarComponent from "../StarComponent";
-import { useGetMyProductsQuery } from "../../helper/reduxToolkit/apis/allProductApi";
+import { useGetAllProductsQuery } from "../../helper/reduxToolkit/apis/Exclusive.Api";
 
-const RightProducts = () => {
-  const { data, isLoading, error } = useGetMyProductsQuery();
+const RightProducts = ({categoryID}) => {
+  console.log(categoryID);
+  
+  const { data, isLoading, error } = useGetAllProductsQuery();
   
   const [product, setproduct] = useState([]);
   const [page, setpage] = useState(1);

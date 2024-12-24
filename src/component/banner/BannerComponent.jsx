@@ -10,13 +10,8 @@ import {useGetAllBannerQuery} from '../../helper/reduxToolkit/apis/Exclusive.Api
 const BannerComponent = () => {
   const [bannerinfo , setbannerinfo]= useState()
 const bannerInfo = useGetAllBannerQuery();
-console.log(bannerInfo);
-
-
-  
   const [currentSlide, setcurrentSlide] = useState(0);
 
-  
   const settings = {
     dots: true,
     // infinite: true,

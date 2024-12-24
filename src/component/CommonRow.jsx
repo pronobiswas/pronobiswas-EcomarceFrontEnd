@@ -7,14 +7,17 @@ import ProductSkeleton from "./ProductSkeleton";
 // ===slider==
 import Slider from "react-slick";
 
-import { HiOutlineArrowLeft, HiOutlineArrowRight, HiOutlineArrowSmRight } from "react-icons/hi";
+import {
+  HiOutlineArrowLeft,
+  HiOutlineArrowRight,
+  HiOutlineArrowSmRight,
+} from "react-icons/hi";
 import ItemCard from "./ItemCard";
 import { FaAngleDoubleRight } from "react-icons/fa";
-
+import { useNavigate } from "react-router";
 
 // =======commonRow======
 // =======commonRow======
-console.log("horibol");
 
 const CommonRow = ({
   subHeading = "Today's",
@@ -29,6 +32,8 @@ const CommonRow = ({
   viewButton = false,
   rows = 1,
 }) => {
+  let navigate = useNavigate();
+
   const SliderRef = useRef(null);
   const settings = {
     dots: false,
@@ -37,9 +42,9 @@ const CommonRow = ({
     slidesToScroll: 1,
     autoplay: true,
     rtl: true,
-    rows :rows,
-    rowGap :30
-    
+    rows: rows,
+    rowGap: 30,
+
     // nextArrow: <SampleNextArrow />,
     // prevArrow: <SamplePrevArrow />,
   };
@@ -49,7 +54,9 @@ const CommonRow = ({
   };
   const prev = () => {
     SliderRef.current.slickNext();
-    console.log("prev");
+  };
+  const handleViewBtn = () => {
+    navigate("/product");
   };
 
   return (
@@ -103,7 +110,7 @@ const CommonRow = ({
                   </div>
                 ))
               : componentData.map((item, index) => (
-                  <div  className="shrink  w-60" key={item?.key}>
+                  <div className="shrink  w-60" key={item?.key}>
                     <Card itemData={item} />
                   </div>
                 ))}
@@ -113,7 +120,7 @@ const CommonRow = ({
 
       {/* ======viewAllProducts======= */}
       {viewButton && (
-        <div className="w-full text-center">
+        <div className="w-full text-center" onClick={handleViewBtn}>
           <span className="viewAllProduct">View All Products</span>
         </div>
       )}

@@ -1,8 +1,11 @@
 import React from "react";
 import { FaAngleRight } from "react-icons/fa6";
 
-const LeftSideFilter = ({ categoryData, isLoading }) => {
+const LeftSideFilter = ({ categoryData, isLoading , categoryId = ()=>{} }) => {
 
+  const getcategoryId =(e)=>{
+    categoryId(e._id)
+  }
 
   return (
     <div>
@@ -21,6 +24,7 @@ const LeftSideFilter = ({ categoryData, isLoading }) => {
             <li
               key={index}
               className="categoryItem py-2 font-popins font-normal text-base flex items-center justify-between cursor-pointer"
+              onClick={()=>categoryId(item._id)}
             >
               {item.title}
               <span className="ml-10">

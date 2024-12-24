@@ -12,7 +12,7 @@ const SingleProductPage = () => {
   const { data, isLoading, error } = useGetSingleProductQuery(
     params?.id || "672fe145c8206af6132fd6ce"
   );
-  // console.log(data.data.image);
+  console.log(isLoading);
 
   return (
     <div>
@@ -23,11 +23,19 @@ const SingleProductPage = () => {
         <div className="warpper w-full py-2 flex flex-col gap-4 md:flex-row ">
           {/* =======image galary======= */}
           <div className="w-full md:w-7/12">
-            <ImageGlary productImages={data.data.image} />
+            {isLoading ? (
+              <h1>isLoading</h1>
+            ) : (
+              <ImageGlary productImages={data.data.image} />
+            )}
           </div>
           {/* ======product details====== */}
           <div className="w-full md:w-5/12 ml-2">
-            <SpecificProductDetails productData={data.data} />
+            {isLoading ? (
+              <h1>loading</h1>
+            ) : (
+              <SpecificProductDetails productData={data.data} />
+            )}
           </div>
         </div>
       </div>
