@@ -1,6 +1,7 @@
 import React from "react";
 import StarComponent from "../component/StarComponent";
 import { FaRegHeart } from "react-icons/fa";
+import { useState, useEffect } from "react";
 import BradeCrumb from "../component/commonComponent/BradeCrumb";
 import {
   useGetSingleCategoryProductQuery,
@@ -11,6 +12,8 @@ import ImageGlary from "../component/productComponent/singleProductComponent/Ima
 import SpecificProductDetails from "../component/productComponent/singleProductComponent/SpecificProductDetails";
 import Slider from "react-slick";
 import ProductCard from "../component/productComponent/ProductCard";
+
+// ========single prouct component======
 const SingleProductPage = () => {
   const params = useParams();
   const { data, isLoading, error } = useGetSingleProductQuery(
@@ -20,16 +23,36 @@ const SingleProductPage = () => {
   const categoryInfo = useGetSingleCategoryProductQuery(
     data?.data?.category?._id
   );
+  
   // console.log(categoryInfo.data.data.product);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [slideItem, setSlideItem] = useState(5);
+
+  useEffect(() => {
+    const handleResize = () => setScreenWidth(window.innerWidth);
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    window.addEventListener("load", ()=>{
+      if(window.innerWidth < 500){
+        setSlideItem(3)
+      }else if(window.innerWidth < 900){
+        setSlideItem(4)
+      }else{setSlideItem(5)}
+    });
+  }, [screenWidth]);
+  
+  
   var settings = {
     dots: true,
     infinite: true,
-    slidesToShow: 5,
+    slidesToShow: slideItem,
     slidesToScroll: 1,
     lazyLoad: true,
     dots: false,
     speed: 1000,
-    autoplay: true,
+    // autoplay: true,
     autoplaySpeed: 2000,
     cssEase: "linear",
   };

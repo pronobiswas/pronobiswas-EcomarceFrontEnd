@@ -51,37 +51,44 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="pt-12 pb-6 border ">
-        <div className="container flex items-center justify-between">
-          {/* =======logo======= */}
-          <div>
-            <span className="text-2xl font-extrabold font-inter tracking-[0.72px] cursor-pointer hover:tracking-[0.95px]">
-              Exlusive
-            </span>
-          </div>
-          {/* =====nav item nemu====== */}
-          <div className="nevigationMenu  lg:block">
-            <ul className="flex gap-x-12">
-              {navItem?.map((nav) => (
-                <li key={nav.id} className="menu_link font-popins text-[16px]">
-                  <NavLink
-                    to={nav.nevigationPaths}
-                    className={({ isPending, isActive }) =>
-                      isPending
-                        ? "text-black text-[17px] font-normal font-popins"
-                        : isActive
-                        ? "text-red-500 text-[17px] font-normal font-popins"
-                        : "text-black text-[17px] font-normal font-popins"
-                    }
+      <nav className="pt-5 md:pt-12 pb-6 border">
+
+        <div className="container flex flex-col lg:flex-row gap-3 items-center justify-between">
+
+          <div className="flex items-center gap-5 lg:gap-x-20 xl:gap-x-60">
+            {/* =======logo======= */}
+            <div>
+              <span className="text-2xl font-extrabold font-inter tracking-[0.72px] cursor-pointer hover:tracking-[0.95px]">
+                Exlusive
+              </span>
+            </div>
+            {/* =====nav item nemu====== */}
+            <div className="nevigationMenu ">
+              <ul className="flex gap-x-3 lg:gap-x-10">
+                {navItem?.map((nav) => (
+                  <li
+                    key={nav.id}
+                    className="menu_link font-popins text-[16px]"
                   >
-                    {nav.item}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
+                    <NavLink
+                      to={nav.nevigationPaths}
+                      className={({ isPending, isActive }) =>
+                        isPending
+                          ? "text-black text-[12px] md:text-base font-normal font-popins"
+                          : isActive
+                          ? "text-red-500 text-[12px] md:text-base font-normal font-popins"
+                          : "text-black text-[12px] md:text-base font-normal font-popins"
+                      }
+                    >
+                      {nav.item}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
           {/* ======Others shop==== */}
-          <div className="hidden flex items-center gap-x-6 relative">
+          <div className="flex items-center gap-x-2 relative">
             {/* ====searchBox==== */}
             <div className="searchBox searchInput flex items-center gap-2 bg-AbchaSada px-2 py-2 rounded  ">
               <input
@@ -95,7 +102,7 @@ const Navbar = () => {
               </span>
             </div>
             {/* ======icon box====== */}
-            <div className="iconBox flex text-[24px] gap-5">
+            <div className="iconBox flex text-[24px] gap-2 md:gap-5">
               <span className="px-1 py-1 bg-slate-300 rounded hover:rounded-full hover:text-Sada hover:bg-Secondary2 cursor-pointer">
                 <CiHeart />
               </span>
@@ -146,6 +153,7 @@ const Navbar = () => {
               </div>
             )}
           </div>
+
         </div>
       </nav>
     </div>

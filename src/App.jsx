@@ -13,6 +13,7 @@ import LogInPage from "./pges/LogInPage";
 import SingleProductPage from "./pges/SingleProductPage";
 import ImageGlary from "./component/productComponent/singleProductComponent/ImageGlary";
 import SpecificProductDetails from "./component/productComponent/singleProductComponent/SpecificProductDetails";
+import AddToCart from "./pges/AddToCart";
 
 function App() {
   const router = createBrowserRouter(
@@ -24,11 +25,11 @@ function App() {
             <Route path="/productDetails" element={<SingleProductPage />} />
             <Route path="/auth/login" element={<LogInPage />} />
             <Route path="/product" element={<ProductsPage />} />
-
             <Route
               path="/product/:id"
               element={<SingleProductPage />}
             />
+            <Route path="/cart" element={<AddToCart />} />
           </Route>
         </Route>
       </>

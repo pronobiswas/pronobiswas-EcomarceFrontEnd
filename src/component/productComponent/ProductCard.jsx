@@ -7,13 +7,11 @@ import useCalculateDiscount from "../../helper/hooks/useCalculateDiscount";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ itemData, isLoading }) => {
-  
-
   return (
     <>
       <Link to={`/product/${itemData._id}`}>
         {/* ====fullcard==== */}
-        <div className="w-60 group hover:cursor-pointer pb-10">
+        <div className="w-full group hover:cursor-pointer pb-10">
           {/* ======discount persentences======== */}
           <div className="w-full flex flex-col bg-AbchaSada relative">
             {/* ======discount persentences====== */}
@@ -40,26 +38,26 @@ const ProductCard = ({ itemData, isLoading }) => {
                 </p>
               </div>
             </div>
-          </div>
-          {/* ======picture======== */}
-          <div className="w-full h-48 flex justify-center items-center px-3">
-            {itemData ? (
-              <img
-                src={itemData?.image[0]}
-                alt=""
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <img
-                src={photo}
-                alt="png"
-                className="w-44 h-full object-contain"
-              />
-            )}
-          </div>
-          {/* ====grab==== */}
-          <div className="w-full bg-black text-Sada text-center opacity-0 group-hover:opacity-100 py-2 ease-in-out duration-300 ">
-            Add To Cart
+            {/* ======picture======== */}
+            <div className="w-full h-32 md:h-48 flex justify-center items-center px-1 md:px-3">
+              {itemData ? (
+                <img
+                  src={itemData?.image[0]}
+                  alt=""
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <img
+                  src={photo}
+                  alt="png"
+                  className="w-full h-full object-cover"
+                />
+              )}
+            </div>
+            {/* ====grab==== */}
+            <div className="w-full bg-black text-Sada text-center opacity-0 group-hover:opacity-100 py-2 ease-in-out duration-300 absolute bottom-0">
+              Add To Cart
+            </div>
           </div>
           {/* =====description section===== */}
           <div className="mt-4">
