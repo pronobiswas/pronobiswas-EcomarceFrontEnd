@@ -2,23 +2,42 @@ import React from "react";
 import StarComponent from "../component/StarComponent";
 import { FaRegHeart } from "react-icons/fa";
 import BradeCrumb from "../component/commonComponent/BradeCrumb";
-import { useGetSingleProductQuery } from "../helper/reduxToolkit/apis/Exclusive.Api";
+import {
+  useGetSingleCategoryProductQuery,
+  useGetSingleProductQuery,
+} from "../helper/reduxToolkit/apis/Exclusive.Api";
 import { useParams } from "react-router-dom";
 import ImageGlary from "../component/productComponent/singleProductComponent/ImageGlary";
 import SpecificProductDetails from "../component/productComponent/singleProductComponent/SpecificProductDetails";
-
+import Slider from "react-slick";
+import ProductCard from "../component/productComponent/ProductCard";
 const SingleProductPage = () => {
   const params = useParams();
   const { data, isLoading, error } = useGetSingleProductQuery(
     params?.id || "672fe145c8206af6132fd6ce"
   );
 
+  const categoryInfo = useGetSingleCategoryProductQuery(
+    data?.data?.category?._id
+  );
+  // console.log(categoryInfo.data.data.product);
+  var settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    lazyLoad: true,
+    dots: false,
+    speed: 1000,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+  };
   return (
     <div>
-      {/* =========pdoduct details===== */}
       <div className="container">
         <BradeCrumb />
-
+        {/* =========pdoduct details===== */}
         <div className="warpper w-full py-2 flex flex-col gap-4 md:flex-row ">
           {/* =======image galary======= */}
           <div className="w-full md:w-7/12">
@@ -35,6 +54,19 @@ const SingleProductPage = () => {
             ) : (
               <SpecificProductDetails productData={data.data} />
             )}
+          </div>
+        </div>
+        {/* ==========similar product======== */}
+        <div>
+          <div className="py-[140px]">
+            <h2 className="font-inter text-2xl font-semibold mb-5">Related Product</h2>
+            <Slider {...settings}>
+              {categoryInfo?.data?.data?.product?.map((item) => (
+                <div className="px-4">
+                  <ProductCard itemData={item} />
+                </div>
+              ))}
+            </Slider>
           </div>
         </div>
       </div>
