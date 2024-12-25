@@ -7,18 +7,15 @@ import useCalculateDiscount from "../../helper/hooks/useCalculateDiscount";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ itemData, isLoading }) => {
-  const handleItemDetails = (id) => {
-    console.log(id);
-  };
+  
 
   return (
     <>
       <Link to={`/product/${itemData._id}`}>
         {/* ====fullcard==== */}
-        {/* onClick={()=>handleItemDetails(itemData._id)} */}
         <div className="w-60 group hover:cursor-pointer pb-10">
           {/* ======discount persentences======== */}
-          <div className="w-full min-h60 flex flex-col bg-AbchaSada relative">
+          <div className="w-full flex flex-col bg-AbchaSada relative">
             {/* ======discount persentences====== */}
             <div className=" w-full absolute">
               <div className="flex justify-between px-3 pt-3">
@@ -45,12 +42,12 @@ const ProductCard = ({ itemData, isLoading }) => {
             </div>
           </div>
           {/* ======picture======== */}
-          <div className="w-full h-60 flex justify-center items-center px-3">
+          <div className="w-full h-48 flex justify-center items-center px-3">
             {itemData ? (
               <img
                 src={itemData?.image[0]}
                 alt=""
-                className="w-44 h-full object-contain"
+                className="w-full h-full object-cover"
               />
             ) : (
               <img

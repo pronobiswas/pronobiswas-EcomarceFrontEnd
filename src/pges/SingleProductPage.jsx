@@ -12,7 +12,6 @@ const SingleProductPage = () => {
   const { data, isLoading, error } = useGetSingleProductQuery(
     params?.id || "672fe145c8206af6132fd6ce"
   );
-  console.log(isLoading);
 
   return (
     <div>

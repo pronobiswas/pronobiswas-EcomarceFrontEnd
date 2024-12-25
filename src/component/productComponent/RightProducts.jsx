@@ -6,53 +6,75 @@ import { FaRegHeart } from "react-icons/fa6";
 import { IoEyeOutline } from "react-icons/io5";
 import photo from "../../../public/girls.png";
 import StarComponent from "../StarComponent";
-import { useGetAllProductsQuery } from "../../helper/reduxToolkit/apis/Exclusive.Api";
+import {
+  useGetAllProductsQuery,
+  useGetSingleCategoryProductQuery,
+} from "../../helper/reduxToolkit/apis/Exclusive.Api";
+import ProductSkeleton from "../ProductSkeleton";
 
-const RightProducts = ({categoryID}) => {
-  console.log(categoryID);
-  
-  const { data, isLoading, error } = useGetAllProductsQuery();
-  
+const RightProducts = ({ categoryID }) => {
+  console.log("categoryID", categoryID);
+
+  const { data, isLoading, error } = categoryID
+    ? useGetSingleCategoryProductQuery(categoryID)
+    : useGetAllProductsQuery();
+
   const [product, setproduct] = useState([]);
   const [page, setpage] = useState(1);
   const [pagePerShow, setpagePerShow] = useState(9);
-  let totalPage = data?.data?.length / 9;
-  
-  
+  // let totalPage = data?.data?.length / 9;
+  let totalPage = categoryID? data?.data?.product?.length / 9 : data?.data?.length / 9;
+
   //   =========pagination funtionality=========
   const handlePerItem = (index) => {
     if (index > 0 && index <= Math.ceil(totalPage)) {
       setpage(index);
     }
   };
-  // select option 
+  // select option
   const handleOption = (e) => {
     setpagePerShow(parseInt(e.target.value));
+  };
 
-  }
-  // handleItem function=========
-  // const handleItem = (itemId) => {
-  //   console.log(itemId);
-  // };
-  
-  
   return (
-
     // =======returning markUp======
     <div>
-      
       {isLoading ? (
-        <span>skeliton</span>
-      ) : (
-        
         <ul className="flex flex-wrap items-center justify-between gap-y-5">
-          {data?.data
-            .slice(page * 9-9, page * pagePerShow)
-            .map((item, index) => (
-              <li onClick={() => handleItem(item._id)}>
-                <ProductCard itemData={item} />
-              </li>
-            ))}
+          {[...new Array(9)].map(() => (
+            <ProductSkeleton />
+          ))}
+        </ul>
+      ) : (
+        <ul className="flex flex-wrap items-center justify-between gap-y-5">
+          {categoryID ? (
+            <>
+              {/* {console.log(data.data.product)} */}
+              {data?.data?.product?.length
+                ? data?.data?.product
+                    ?.slice(page * 9 - 9, page * pagePerShow)
+                    .map((item, index) => (
+                      <li key={index}>
+                        <ProductCard itemData={item} />
+                      </li>
+                    ))
+                : 
+                <>
+                <div>
+                  <h1 className="font-inter text-5xl">No Product Available!</h1>
+                </div>
+                </>
+                }
+            </>
+          ) : (
+            data?.data
+              .slice(page * 9 - 9, page * pagePerShow)
+              .map((item, index) => (
+                <li key={index}>
+                  <ProductCard itemData={item} />
+                </li>
+              ))
+          )}
         </ul>
       )}
       {/* =========pegination====== */}
@@ -102,7 +124,6 @@ const RightProducts = ({categoryID}) => {
       </div>
 
       {/* =========pegination====== */}
-      
     </div>
   );
 };

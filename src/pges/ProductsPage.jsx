@@ -14,6 +14,7 @@ const ProductsPage = () => {
     setCategoryID(e)
   }
   
+  
   return (
     <div className="container">
       {/* =========breadCrumb===== */}
@@ -26,7 +27,6 @@ const ProductsPage = () => {
         <div className="aside w-2/6 lg:w-1/6 h-full max-h-screen ">
           {isLoading ? (
             <>
-              <span>Loading</span>
               <ul className="flex flex-col gap-2">
                 {Array(7)
                   .fill("")
