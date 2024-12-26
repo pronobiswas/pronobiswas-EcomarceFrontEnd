@@ -14,6 +14,7 @@ import SingleProductPage from "./pges/SingleProductPage";
 import ImageGlary from "./component/productComponent/singleProductComponent/ImageGlary";
 import SpecificProductDetails from "./component/productComponent/singleProductComponent/SpecificProductDetails";
 import AddToCart from "./pges/AddToCart";
+import CartPage from "./pges/CartPage";
 
 function App() {
   const router = createBrowserRouter(
@@ -29,7 +30,7 @@ function App() {
               path="/product/:id"
               element={<SingleProductPage />}
             />
-            <Route path="/cart" element={<AddToCart />} />
+            <Route path="/cart" element={<CartPage />} />
           </Route>
         </Route>
       </>

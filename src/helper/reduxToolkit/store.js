@@ -4,10 +4,12 @@ import { productApi } from "./apis/productAPI";
 import { flashSaleApi } from "./apis/flashSaleAPI";
 import { exclusiveApi } from "./apis/Exclusive.Api";
 import { allProductApi } from "./apis/allProductApi";
+import  cartSlice  from "./slice/cartSlice";
 
 export const store = configureStore({
   reducer: {
     count: counterSlice,
+    cartItem: cartSlice,
     [productApi.reducerPath]: productApi.reducer,
     [flashSaleApi.reducerPath]: flashSaleApi.reducer,
     [exclusiveApi.reducerPath]: exclusiveApi.reducer,

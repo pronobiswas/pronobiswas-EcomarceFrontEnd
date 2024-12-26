@@ -52,9 +52,7 @@ const Navbar = () => {
   return (
     <div>
       <nav className="pt-5 md:pt-12 pb-6 border">
-
         <div className="container flex flex-col lg:flex-row gap-3 items-center justify-between">
-
           <div className="flex items-center gap-5 lg:gap-x-20 xl:gap-x-60">
             {/* =======logo======= */}
             <div>
@@ -106,10 +104,13 @@ const Navbar = () => {
               <span className="px-1 py-1 bg-slate-300 rounded hover:rounded-full hover:text-Sada hover:bg-Secondary2 cursor-pointer">
                 <CiHeart />
               </span>
+              {/* ----cart Icon---- */}
+              <Link to={"/cart"} className="inline-block amount px-1 py-1 bg-slate-300 rounded hover:rounded-full hover:text-Sada hover:bg-Secondary2 cursor-pointer">
+                <span className="">
+                  <BsCart3 />
+                </span>
+              </Link>
 
-              <span className="amount px-1 py-1 bg-slate-300 rounded hover:rounded-full hover:text-Sada hover:bg-Secondary2 cursor-pointer">
-                <BsCart3 />
-              </span>
               <span
                 className="User_icon  px-1 py-1 bg-slate-300 rounded hover:rounded-full hover:text-Sada hover:bg-Secondary2 cursor-pointer"
                 ref={userAccountRef}
@@ -153,7 +154,6 @@ const Navbar = () => {
               </div>
             )}
           </div>
-
         </div>
       </nav>
     </div>

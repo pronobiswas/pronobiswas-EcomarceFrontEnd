@@ -75,7 +75,7 @@ const SingleProductPage = () => {
             {isLoading ? (
               <h1>loading</h1>
             ) : (
-              <SpecificProductDetails productData={data.data} />
+              <SpecificProductDetails productData={data?.data} />
             )}
           </div>
         </div>
@@ -85,7 +85,7 @@ const SingleProductPage = () => {
             <h2 className="font-inter text-2xl font-semibold mb-5">Related Product</h2>
             <Slider {...settings}>
               {categoryInfo?.data?.data?.product?.map((item) => (
-                <div className="px-4">
+                <div className="px-4" key={item._id}>
                   <ProductCard itemData={item} />
                 </div>
               ))}

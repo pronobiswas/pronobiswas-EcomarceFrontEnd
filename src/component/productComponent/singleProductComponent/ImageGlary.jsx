@@ -18,7 +18,7 @@ const ImageGlary = ({ productImages }) => {
           <div className="w-full flex flex-row gap-3 py-5 items-center md:flex-col">
             {productImages
               ? productImages.map((singleImage) => (
-                  <div className="w-20 h-16 bg-slate-500 rounded sm:w-36 sm:h-28 md:w-full md:h-40 " onClick={()=>setinitailImage(singleImage)}>
+                  <div className="w-20 h-16 bg-slate-500 rounded sm:w-36 sm:h-28 md:w-full md:h-40 " key={singleImage.key} onClick={()=>setinitailImage(singleImage)}>
                     <img
                       src={singleImage}
                       alt="{singleImage}"

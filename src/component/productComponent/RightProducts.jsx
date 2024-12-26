@@ -13,8 +13,6 @@ import {
 import ProductSkeleton from "../ProductSkeleton";
 
 const RightProducts = ({ categoryID }) => {
-  console.log("categoryID", categoryID);
-
   const { data, isLoading, error } = categoryID
     ? useGetSingleCategoryProductQuery(categoryID)
     : useGetAllProductsQuery();
@@ -22,8 +20,9 @@ const RightProducts = ({ categoryID }) => {
   const [product, setproduct] = useState([]);
   const [page, setpage] = useState(1);
   const [pagePerShow, setpagePerShow] = useState(9);
-  // let totalPage = data?.data?.length / 9;
-  let totalPage = categoryID? data?.data?.product?.length / 9 : data?.data?.length / 9;
+  let totalPage = categoryID
+    ? data?.data?.product?.length / 9
+    : data?.data?.length / 9;
 
   //   =========pagination funtionality=========
   const handlePerItem = (index) => {
@@ -41,30 +40,33 @@ const RightProducts = ({ categoryID }) => {
     <div>
       {isLoading ? (
         <ul className="flex flex-wrap items-center justify-between gap-y-5">
-          {[...new Array(9)].map(() => (
-            <ProductSkeleton />
+          {[...new Array(9)].map((_, index) => (
+            <div key={index}>
+              <ProductSkeleton />
+            </div>
           ))}
         </ul>
       ) : (
         <ul className="flex flex-wrap items-center justify-between gap-y-5">
           {categoryID ? (
             <>
-              {/* {console.log(data.data.product)} */}
-              {data?.data?.product?.length
-                ? data?.data?.product
-                    ?.slice(page * 9 - 9, page * pagePerShow)
-                    .map((item, index) => (
-                      <li key={index}>
-                        <ProductCard itemData={item} />
-                      </li>
-                    ))
-                : 
+              {data?.data?.product?.length ? (
+                data?.data?.product
+                  ?.slice(page * 9 - 9, page * pagePerShow)
+                  .map((item, index) => (
+                    <li key={index}>
+                      <ProductCard itemData={item} />
+                    </li>
+                  ))
+              ) : (
                 <>
-                <div>
-                  <h1 className="font-inter text-5xl">No Product Available!</h1>
-                </div>
+                  <div>
+                    <h1 className="font-inter text-5xl">
+                      No Product Available!
+                    </h1>
+                  </div>
                 </>
-                }
+              )}
             </>
           ) : (
             data?.data
