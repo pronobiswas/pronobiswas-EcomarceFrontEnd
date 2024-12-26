@@ -12,9 +12,6 @@ const FlashSale = () => {
   const flashSaleProduct = data?.data?.map((item) => {
     return item.productId;
   });
-  console.log(flashSaleProduct);
-  
-  
   
   
   return (

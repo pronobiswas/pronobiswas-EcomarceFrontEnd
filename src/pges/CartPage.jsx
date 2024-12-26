@@ -1,11 +1,25 @@
 import React from "react";
 import BradeCrumb from "../component/commonComponent/BradeCrumb";
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowUp, IoMdCloseCircle } from "react-icons/io";
+import { useDispatch, useSelector } from "react-redux";
+import { decrementCart, incrementCart, removeCart } from "../helper/reduxToolkit/slice/cartSlice";
+import { MdOutlineCancel } from "react-icons/md";
 
 const CartPage = () => {
-    const handleRemove=(e)=>{
-        console.log(e);
-    }
+  const dispatch = useDispatch();
+  const { value, totalAmount, totalItem } = useSelector(
+    (state) => state.cartItem
+  );
+
+  const handleRemove = (item) => {
+    dispatch(removeCart(item));
+  };
+  const handleIncrement = (item) => {
+    dispatch(incrementCart(item));
+  };
+  const handleDecrement = (item) => {
+    dispatch(decrementCart(item));
+  };
   return (
     <div>
       <div className="container py-10">
@@ -35,52 +49,57 @@ const CartPage = () => {
 
         {/* carti tem */}
         <div className="custom_scrollbar w-full h-[500px] overflow-y-scroll ">
-          {[... new Array(4)].map((_,index) => (
-            <div className="mb-10" key={index}>
+          {value?.map((item) => (
+            <div className="mb-10" key={item._id}>
+              {console.log(item)}
               <div className="flex justify-between shadow-lg rounded">
-                <div className="flex-1 py-6  flex justify-start">
-                  <div className="flex pl-10 items-center gap-x-5 relative ">
+                  {/* ======product image box====== */}
+                <div className="flex-1  py-6  flex justify-start">
+                  <div className="flex pl-5 items-center gap-x-5 relative ">
                     <img
-                      src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.wired.com%2Fstory%2Fstay-in-the-moment-take-a-picture%2F&psig=AOvVaw2kE0bZbpGhNJt3lCVH_SBj&ust=1735253854201000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCKjGq7-CxIoDFQAAAAAdAAAAABAE"
+                      src={item?.image[0]}
                       alt="pic"
                       className="w-[54px] h-[54px] object-contain"
                     />
+                    {/* ======cancel Button===== */}
                     <span
-                      className="w-[20px] h-[20px] rounded-full bg-redDB4444 absolute text-white_FFFFFF flex justify-center items-center top-[-2%] left-[15%] font-semibold cursor-pointer hover:opacity-70"
-                      onClick={() => handleRemove(index)}
+                      className="w-[20px] h-[20px] text-xl text-red-600 rounded-full bg-redDB4444 absolute text-white_FFFFFF flex justify-center items-center top-[-2%] left-[15%] font-semibold cursor-pointer hover:opacity-70"
+                      onClick={() => handleRemove(item)}
                     >
-                      X
+                      <IoMdCloseCircle />
                     </span>
-                    <h1 className="text-[16px] font-popins font-normal text-text_black000000 ">
-                      {/* {item.name} */}
-                      product Name
+                    {/* ======product Name==== */}
+                    <h1 className="text-Base font-popins font-normal text-black ">
+                      {item ? item?.title : "Product"}
                     </h1>
                   </div>
                 </div>
+                {/* =====product price======= */}
                 <div className=" flex-1  py-6 flex justify-center">
                   <h3 className="text-[20px] font-popins font-normal text-text_black000000">
-                    {/* ${item?item.price:"2222"} */}
-                    $2323
+                    ${item ? item.price : "00"}
                   </h3>
                 </div>
+                {/* ======product Quantity===== */}
                 <div className=" flex-1  py-6 flex   justify-center">
                   <div className="flex items-center justify-center gap-x-3 w-[100px] rounded border border-gray-400">
                     <input
                       type="text"
-                      value="2"
+                      value={item.cartQuantity}
                       className=" w-[25px] text-[20px] font-popins font-normal text-text_black000000"
                     />
                     <div className="flex flex-col items-center justify-center">
-                      <span className="">
+                      <span className="" onClick={()=>handleIncrement(item)}>
                         <IoIosArrowUp className="inline-block  cursor-pointer" />
                       </span>
 
-                      <span className="">
+                      <span className="" onClick={()=>handleDecrement(item)}>
                         <IoIosArrowDown className="inline-block  cursor-pointer" />
                       </span>
                     </div>
                   </div>
                 </div>
+                {/* ========total price====== */}
                 <div className=" flex-1 flex justify-end py-6">
                   <h1 className="text-[20px] font-popins font-normal text-text_black000000 pr-10">
                     {/* $ {+item.price.replace(/,/g, "") * +item.cartQuantity} */}
@@ -159,7 +178,6 @@ const CartPage = () => {
         </div>
         {/* subtotal and copun */}
       </div>
-
     </div>
   );
 };
