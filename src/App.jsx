@@ -15,6 +15,7 @@ import ImageGlary from "./component/productComponent/singleProductComponent/Imag
 import SpecificProductDetails from "./component/productComponent/singleProductComponent/SpecificProductDetails";
 import AddToCart from "./pges/AddToCart";
 import CartPage from "./pges/CartPage";
+import HorizontalProductCart from "./component/productComponent/HorizontalProductCart";
 
 function App() {
   const router = createBrowserRouter(
@@ -31,6 +32,7 @@ function App() {
               element={<SingleProductPage />}
             />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/cards" element={<HorizontalProductCart />} />
           </Route>
         </Route>
       </>

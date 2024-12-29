@@ -10,7 +10,7 @@ const BradeCrumb = () => {
   let BreadcrumdPath = "";
 
   return (
-    <div className="w-full flex gap-2">
+    <div className="container flex gap-2">
       <span>Home / </span>
       {/* =======map the paath array===== */}
       {pathNameArray.map((name, index) => {

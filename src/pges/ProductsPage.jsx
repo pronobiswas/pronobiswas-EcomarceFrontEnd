@@ -16,15 +16,15 @@ const ProductsPage = () => {
   
   
   return (
-    <div className="container">
+    <div className="container  ">
       {/* =========breadCrumb===== */}
-      <div className="w-full pt-4 pb-6">
+      <div className="container w-full pt-4 pb-6">
         <BradeCrumb />
       </div>
 
       <div className="warpper w-full flex gap-3">
         {/* =======shop by category======== */}
-        <div className="aside w-2/6 lg:w-1/6 h-full max-h-screen ">
+        <div className="aside hidden md:block w-2/6 lg:w-1/6 h-full max-h-screen ">
           {isLoading ? (
             <>
               <ul className="flex flex-col gap-2">
@@ -41,7 +41,7 @@ const ProductsPage = () => {
         </div>
 
         {/* ========shop by products====== */}
-        <div className="beside w-4/6 lg:w-5/6 h-full min-h-screen">
+        <div className="beside md:w-4/6 lg:w-5/6 h-full min-h-screen">
           <RightProducts categoryID={categoryID} />
         </div>
       </div>

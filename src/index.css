@@ -32,6 +32,12 @@
   .footerUl {
     @apply flex flex-col gap-y-4 font-popins [&>li:hover]:underline cursor-pointer;
   }
+  .rhorizontal{
+    @apply w-full
+  }
+  .productCard{
+    @apply w-full flex gap-x-2 xl:gap-x-10
+  }
   .slick-track {
     gap: 30px;
   }

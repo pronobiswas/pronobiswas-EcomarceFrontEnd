@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ItemCard from "../ItemCard";
 
 import ProductCard from "./ProductCard";
-import { FaRegHeart } from "react-icons/fa6";
+import { FaBars, FaRegHeart } from "react-icons/fa6";
 import { IoEyeOutline } from "react-icons/io5";
 import photo from "../../../public/girls.png";
 import StarComponent from "../StarComponent";
@@ -11,6 +11,7 @@ import {
   useGetSingleCategoryProductQuery,
 } from "../../helper/reduxToolkit/apis/Exclusive.Api";
 import ProductSkeleton from "../ProductSkeleton";
+import { BsFillGrid3X3GapFill } from "react-icons/bs";
 
 const RightProducts = ({ categoryID }) => {
   const { data, isLoading, error } = categoryID
@@ -34,12 +35,22 @@ const RightProducts = ({ categoryID }) => {
   const handleOption = (e) => {
     setpagePerShow(parseInt(e.target.value));
   };
+  const [isActive, setIsActive] = useState(false);
+  // =====handleClick========
+  const handleClick = () => {
+    setIsActive(!isActive);
+  };
 
   return (
     // =======returning markUp======
     <div>
+      <div className="w-full flex justify-end">
+        <button className="px-4 py-4 bg-yellow-300" onClick={handleClick}>
+          {isActive?<BsFillGrid3X3GapFill />:<FaBars />}
+        </button>
+      </div>
       {isLoading ? (
-        <ul className="flex flex-wrap items-center justify-between gap-y-5">
+        <ul className={`flex flex-wrap items-center justify-between gap-y-5`}>
           {[...new Array(9)].map((_, index) => (
             <div key={index}>
               <ProductSkeleton />
@@ -47,7 +58,11 @@ const RightProducts = ({ categoryID }) => {
           ))}
         </ul>
       ) : (
-        <ul className="flex flex-wrap items-center justify-between gap-y-5">
+        <ul
+          className={`w-full ${
+            isActive ? "flex-col" : "flex-row flex-wrap"
+          } flex  items-center justify-between gap-5`}
+        >
           {categoryID ? (
             <>
               {data?.data?.product?.length ? (
@@ -72,8 +87,13 @@ const RightProducts = ({ categoryID }) => {
             data?.data
               .slice(page * 9 - 9, page * pagePerShow)
               .map((item, index) => (
-                <li key={index}>
-                  <ProductCard itemData={item} />
+                <li
+                  key={index}
+                  className={`${
+                    isActive ? "w-full" : "w-initial"
+                  }`}
+                >
+                  <ProductCard itemData={item} isActive={isActive} />
                 </li>
               ))
           )}

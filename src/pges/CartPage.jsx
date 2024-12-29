@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import BradeCrumb from "../component/commonComponent/BradeCrumb";
 import { IoIosArrowDown, IoIosArrowUp, IoMdCloseCircle } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
-import { decrementCart, incrementCart, removeCart } from "../helper/reduxToolkit/slice/cartSlice";
+import {
+  decrementCart,
+  incrementCart,
+  removeCart,
+  getTotal,
+} from "../helper/reduxToolkit/slice/cartSlice";
 import { MdOutlineCancel } from "react-icons/md";
 
 const CartPage = () => {
   const dispatch = useDispatch();
-  const { value, totalAmount, totalItem } = useSelector(
+  // ===inovoke getTotal===
+  useEffect(() => {
+    dispatch(getTotal());
+  }, [localStorage.getItem("cartItem")]);
+
+  const { value, totalProductAmount, totalProduct } = useSelector(
     (state) => state.cartItem
   );
 
@@ -24,6 +34,8 @@ const CartPage = () => {
     <div>
       <div className="container py-10">
         <BradeCrumb />
+        {/* <span>{totalProductAmount}</span> */}
+        {/* ========details Header========== */}
         <div className="flex justify-between shadow-lg rounded mb-10">
           <div className="flex-1 py-6  flex justify-start">
             <h1 className="text-[20px] font-popins font-normal text-text_black000000 pl-10">
@@ -51,9 +63,9 @@ const CartPage = () => {
         <div className="custom_scrollbar w-full h-[500px] overflow-y-scroll ">
           {value?.map((item) => (
             <div className="mb-10" key={item._id}>
-              {console.log(item)}
+              {/* {console.log(item)} */}
               <div className="flex justify-between shadow-lg rounded">
-                  {/* ======product image box====== */}
+                {/* ======product image box====== */}
                 <div className="flex-1  py-6  flex justify-start">
                   <div className="flex pl-5 items-center gap-x-5 relative ">
                     <img
@@ -89,11 +101,11 @@ const CartPage = () => {
                       className=" w-[25px] text-[20px] font-popins font-normal text-text_black000000"
                     />
                     <div className="flex flex-col items-center justify-center">
-                      <span className="" onClick={()=>handleIncrement(item)}>
+                      <span className="" onClick={() => handleIncrement(item)}>
                         <IoIosArrowUp className="inline-block  cursor-pointer" />
                       </span>
 
-                      <span className="" onClick={()=>handleDecrement(item)}>
+                      <span className="" onClick={() => handleDecrement(item)}>
                         <IoIosArrowDown className="inline-block  cursor-pointer" />
                       </span>
                     </div>
@@ -102,8 +114,7 @@ const CartPage = () => {
                 {/* ========total price====== */}
                 <div className=" flex-1 flex justify-end py-6">
                   <h1 className="text-[20px] font-popins font-normal text-text_black000000 pr-10">
-                    {/* $ {+item.price.replace(/,/g, "") * +item.cartQuantity} */}
-                    34343
+                    $ {+item.price * item.cartQuantity}
                   </h1>
                 </div>
               </div>
@@ -148,8 +159,7 @@ const CartPage = () => {
               <div className="justify-between   relative inline-flex items-center w-full px-4 py-2 font-popins font-normal text-text_black000000 text-[16px border-b border-gray-200 rounded-t-lg hover:bg-gray-100">
                 <button type="button">Subtotal:</button>
                 <span className="inline-block font-popins font-normal text-text_black000000 text-[16px]">
-                  {" "}
-                  $1750
+                  {totalProductAmount?totalProductAmount:"00.00"}
                 </span>
               </div>
 
