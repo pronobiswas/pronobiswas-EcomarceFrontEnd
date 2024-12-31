@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { CiHeart } from "react-icons/ci";
 import { BsCart3 } from "react-icons/bs";
@@ -10,6 +11,7 @@ import { FaRegStar } from "react-icons/fa";
 import { TbLogout2 } from "react-icons/tb";
 
 const Navbar = () => {
+  const { totalProduct } = useSelector((state) => state.cartItem);
   const [account, setAccount] = useState(false);
   const userAccountRef = useRef(null);
 
@@ -105,7 +107,7 @@ const Navbar = () => {
                 <CiHeart />
               </span>
               {/* ----cart Icon---- */}
-              <Link to={"/cart"} className="inline-block amount px-1 py-1 bg-slate-300 rounded hover:rounded-full hover:text-Sada hover:bg-Secondary2 cursor-pointer">
+              <Link to={"/cart"} className="inline-block amount px-1 py-1 bg-slate-300 rounded hover:rounded-full hover:text-Sada hover:bg-Secondary2 cursor-pointer" data-cartTotalItem ={totalProduct}>
                 <span className="">
                   <BsCart3 />
                 </span>

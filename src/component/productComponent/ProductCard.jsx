@@ -6,16 +6,16 @@ import StarComponent from "../StarComponent";
 import useCalculateDiscount from "../../helper/hooks/useCalculateDiscount";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addtoCart } from "../../helper/reduxToolkit/slice/cartSlice";
+import { addtoCart, getTotal } from "../../helper/reduxToolkit/slice/cartSlice";
 
 const ProductCard = ({ itemData, isActive }) => {
   const dispatch = useDispatch();
-  console.log(isActive);
 
   const cartItem = useSelector((state) => state.cartItem);
 
   const handleAddToCart = (itemData, xxx) => {
     dispatch(addtoCart(itemData));
+    dispatch(getTotal());
   };
   return (
     <>

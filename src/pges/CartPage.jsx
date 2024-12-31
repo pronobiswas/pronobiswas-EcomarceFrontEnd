@@ -174,8 +174,7 @@ const CartPage = () => {
               <div className="justify-between   relative inline-flex items-center w-full px-4 py-2 font-popins font-normal text-text_black000000 text-[16px rounded-t-lg hover:bg-gray-100">
                 <button type="button">Total:</button>
                 <span className="inline-block font-popins font-normal text-text_black000000 text-[16px]">
-                  {" "}
-                  $1750
+                {totalProductAmount?totalProductAmount:"00.00"}
                 </span>
               </div>
             </div>
