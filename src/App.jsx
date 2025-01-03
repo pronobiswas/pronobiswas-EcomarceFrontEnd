@@ -18,6 +18,7 @@ import CartPage from "./pges/CartPage";
 import SignUp from './pges/Auth/signUp/SignUp'
 import HorizontalProductCart from "./component/productComponent/HorizontalProductCart";
 import SignInPage from "./pges/Auth/signIn/SignInPage";
+import MatchOTP from "./pges/Auth/MatchOTP";
 
 function App() {
   const router = createBrowserRouter(
@@ -35,9 +36,11 @@ function App() {
             />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/signup" element={< SignUp/>} />
+            
             <Route path="/signin" element={< SignInPage/>} />
             <Route path="/cards" element={<HorizontalProductCart />} />
           </Route>
+          <Route path="/otp" element={< MatchOTP/>} />
         </Route>
       </>
     )

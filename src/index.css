@@ -197,5 +197,8 @@
     border-radius: 50%;
     transform: skew(282deg, -24deg);
   }
+  /* .signUpPage{
+    background: linear-gradient(0deg, #000000 0%, rgba(255,255,255,1) 100%);
+  } */
  
 }
