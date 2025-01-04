@@ -47,7 +47,7 @@ const Navbar = () => {
     {
       id: 4,
       item: "Sign Up",
-      nevigationPaths: "/",
+      nevigationPaths: "/signup",
     },
   ];
 

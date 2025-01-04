@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { axiosInstace } from "../../helper/axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const MatchOTP = () => {
+  const navigate = useNavigate();
   const [userOTP, setUserOTP] = useState("");
   const [emailAddress, SetEmailAddress] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
@@ -13,15 +16,37 @@ const MatchOTP = () => {
   };
   // ====handle submit===
   const handleSubmit = async () => {
-    console.log(userOTP);
-    
-    const response = await axiosInstace.post("/otp", {
-      emailAddress: emailAddress,
-      otp: userOTP,
-    });
+    try {
+      if (userOTP == "") {
+        setErrorMsg("Required");
+      }
 
-    if (userOTP == "") {
-      setErrorMsg("Required");
+      const response = await axiosInstace.post("/otp", {
+        emailAddress: emailAddress,
+        otp: userOTP,
+      });
+      if (response) {
+        console.log(response);
+        if(response.data.message){
+            toast(response.data.message)
+            setTimeout(()=>{
+              navigate('/signin');
+              localStorage.removeItem('RegInfo')
+            },2000)
+        }
+        
+      }
+    } catch (error) {
+    //   console.log(error);
+    // =======handle Error=======
+    //   if (error.response) {
+    //     console.log(error.response.data.message);
+    //     console.log(error.response.status);
+    //     console.log(error.response.headers);
+    //   }
+      if(error.response.data.message){
+        toast(error.response.data.message)
+      }
     }
   };
 

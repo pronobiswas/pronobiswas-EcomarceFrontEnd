@@ -5,6 +5,7 @@ import { axiosInstace } from "../../../helper/axios";
 import signupImage from "./signupImage.jpg";
 import signupBGremove from "./signupBGremove.png";
 import { SuessToast } from "../../../utils/toast";
+import { useNavigate } from "react-router";
 
 const validate = (values) => {
   const errors = {};
@@ -37,6 +38,8 @@ const validate = (values) => {
     errors.password = "Required";
   } else if (values.password.length > 20) {
     errors.password = "Must be 20 characters or less";
+  } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/i.test(values.password)) {
+    errors.password = "Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character";
   }
 
   if (!values.agree) {
@@ -49,6 +52,9 @@ const validate = (values) => {
 };
 
 const signup = () => {
+
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -77,8 +83,8 @@ const signup = () => {
         if(responsee){
           // =====set email address into localStorage=====
           localStorage.setItem("RegInfo",JSON.stringify(values));
-          SuessToast("regestetion successfull")
-          
+          SuessToast("Check your Inbox please");
+          setTimeout(()=>{navigate('/otp')},2000)
         }
       } catch (error) {
         console.log("submit error", error);

@@ -1,82 +1,102 @@
-import React from 'react'
-import { useFormik } from 'formik';
-
-
-const validate = values => {
-  const errors = {};
-
-  if (!values.firstName) {
-    errors.firstName = 'Required';
-  } else if (values.firstName.length > 15) {
-    errors.firstName = 'Must be 15 characters or less';
-  }
-
-  if (!values.lastName) {
-    errors.lastName = 'Required';
-  } else if (values.lastName.length > 20) {
-    errors.lastName = 'Must be 20 characters or less';
-  }
-
-  if (!values.email) {
-    errors.email = 'Required';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address';
-  }
-
-  return errors;
-};
-
+import React, { useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { axiosInstace } from "../../../helper/axios";
+import { ErrorToast, SuessToast } from "../../../utils/toast";
 
 const SignInPage = () => {
-  const initialValue= {
-    firstName: '',
-    lastName: '',
-    email: '',
-  }
-  const formik = useFormik({
-    initialValues: initialValue,
-    validate,
-    onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
-    },
-  });
-  return (
-    <div>
-      <form onSubmit={formik.handleSubmit} className='flex flex-col gap-1'>
-       <label htmlFor="firstName">First Name</label>
-       <input
-         id="firstName"
-         name="firstName"
-         type="text"
-         onChange={formik.handleChange}
-         value={formik.values.firstName}
-       />
-       {formik.errors.firstName ? <div>{formik.errors.firstName}</div> : null}
- 
-       <label htmlFor="lastName">Last Name</label>
-       <input
-         id="lastName"
-         name="lastName"
-         type="text"
-         onChange={formik.handleChange}
-         value={formik.values.lastName}
-       />
-       {formik.errors.lastName ? <div>{formik.errors.lastName}</div> : null}
- 
-       <label htmlFor="email">Email Address</label>
-       <input
-         id="email"
-         name="email"
-         type="email"
-         onChange={formik.handleChange}
-         value={formik.values.email}
-       />
-       {formik.errors.email ? <div>{formik.errors.email}</div> : null}
- 
-       <button type="submit">Submit</button>
-     </form>
-    </div>
-  )
-}
+  const initialValues = {
+    email: "",
+    password: "",
+  };
 
-export default SignInPage
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+    password: Yup.string()
+      .min(6, "Password must be at least 6 characters")
+      .required("Password is required"),
+  });
+
+  const onSubmit = async (values, { setSubmitting }) => {
+    try {
+      const response = await axiosInstace.post("/login", {
+        emailAddress: values.email,
+        password: values.password,
+      });
+      console.log(response.data);
+      if(response.data){
+        SuessToast("wellcome");
+      }
+      
+
+      // setTimeout(() => {
+      //   setSubmitting(false);
+      //   alert(JSON.stringify(values, null, 2));
+      // }, 1000);
+    } catch (error) {
+      if(error.response.data){
+
+        ErrorToast(error.response.data.message)
+      }
+    }
+  };
+
+  return (
+    <div className="container py-12">
+      <div>
+        <h1>Sign In</h1>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={onSubmit}
+        >
+          {({ isSubmitting }) => (
+            <Form>
+              <div className="w-full border border-sky-500 shadow-inner rounded relative bg-Sada">
+                <label
+                  htmlFor="email"
+                  className="absolute bg-Sada -top-2 left-3 border-[1px] border-sky-500 text-[10px] px-1 rounded"
+                >
+                  Email
+                </label>
+                <Field
+                  type="email"
+                  id="email"
+                  name="email"
+                  className="w-full px-3 py-2 border-b-2 border-transparent focus:outline-none focus:border-red-500 transition duration-300 rounded"
+                />
+                <ErrorMessage name="email" component="div" className="error" />
+              </div>
+              <div className="w-full border border-sky-500 shadow-inner rounded relative bg-Sada">
+                <label
+                  htmlFor="password"
+                  className="absolute bg-Sada -top-2 left-3 border-[1px] border-sky-500 text-[10px] px-1 rounded"
+                >
+                  Password
+                </label>
+                <Field
+                  type="password"
+                  id="password"
+                  name="password"
+                  className="w-full px-3 py-2 border-b-2 border-transparent focus:outline-none focus:border-red-500 transition duration-300 rounded"
+                />
+                <ErrorMessage
+                  name="password"
+                  component="div"
+                  className="error"
+                />
+              </div>
+              <button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Signing in..." : "Sign In"}
+              </button>
+            </Form>
+          )}
+        </Formik>
+      </div>
+    </div>
+  );
+};
+
+export default SignInPage;
