@@ -15,10 +15,11 @@ import ImageGlary from "./component/productComponent/singleProductComponent/Imag
 import SpecificProductDetails from "./component/productComponent/singleProductComponent/SpecificProductDetails";
 import AddToCart from "./pges/AddToCart";
 import CartPage from "./pges/CartPage";
-import SignUp from './pges/Auth/signUp/SignUp'
+import SignUp from "./pges/Auth/signUp/SignUp";
 import HorizontalProductCart from "./component/productComponent/HorizontalProductCart";
 import SignInPage from "./pges/Auth/signIn/SignInPage";
 import MatchOTP from "./pges/Auth/MatchOTP";
+import ForgotPasswordPage from "./pges/Auth/ForgotPasswordPage";
 
 function App() {
   const router = createBrowserRouter(
@@ -30,17 +31,15 @@ function App() {
             <Route path="/productDetails" element={<SingleProductPage />} />
             <Route path="/auth/login" element={<LogInPage />} />
             <Route path="/product" element={<ProductsPage />} />
-            <Route
-              path="/product/:id"
-              element={<SingleProductPage />}
-            />
+            <Route path="/product/:id" element={<SingleProductPage />} />
             <Route path="/cart" element={<CartPage />} />
-            <Route path="/signup" element={< SignUp/>} />
-            
-            <Route path="/signin" element={< SignInPage/>} />
+            <Route path="/signup" element={<SignUp />} />
+
             <Route path="/cards" element={<HorizontalProductCart />} />
           </Route>
-          <Route path="/otp" element={< MatchOTP/>} />
+          <Route path="/signin" element={<SignInPage />} />
+          <Route path="/otp" element={<MatchOTP />} />
+          <Route path="/forgotPassword" element={<ForgotPasswordPage />} />
         </Route>
       </>
     )

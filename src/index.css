@@ -23,6 +23,10 @@
 }
 
 @layer component {
+  
+  .center{
+    @apply flex items-center justify-center
+  }
   .viewAllProduct {
     @apply font-popins text-base text-Sada bg-Secondary2 py-4 px-12 rounded hover:cursor-pointer;
   }
@@ -200,5 +204,16 @@
   /* .signUpPage{
     background: linear-gradient(0deg, #000000 0%, rgba(255,255,255,1) 100%);
   } */
+
+  /* ========logIn page====== */
+   #LoginPage{
+    /* background-image: url("../public/signin.jpg"); */
+    background-image: url("../public/whiteDrop.gif");
+    background-size: 100% 100%;
+   }
+   .LoginPage_warpper{
+    /* @apply bg-[#0a0a0a3d] */
+    
+   }
  
 }
