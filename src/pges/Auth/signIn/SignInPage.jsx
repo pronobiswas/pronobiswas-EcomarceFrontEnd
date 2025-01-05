@@ -40,7 +40,7 @@ const SignInPage = () => {
         SuessToast("wellcome");
         setTimeout(() => {
           setSubmitting(false);
-          // navigate("/");
+          navigate("/");
         }, 1000);
       }
     } catch (error) {
