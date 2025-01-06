@@ -107,7 +107,11 @@ const Navbar = () => {
                 <CiHeart />
               </span>
               {/* ----cart Icon---- */}
-              <Link to={"/cart"} className="inline-block amount px-1 py-1 bg-slate-300 rounded hover:rounded-full hover:text-Sada hover:bg-Secondary2 cursor-pointer" data-cartTotalItem ={totalProduct}>
+              <Link
+                to={"/cart"}
+                className="inline-block amount px-1 py-1 bg-slate-300 rounded hover:rounded-full hover:text-Sada hover:bg-Secondary2 cursor-pointer"
+                data-cartTotalItem={totalProduct}
+              >
                 <span className="">
                   <BsCart3 />
                 </span>
@@ -123,12 +127,15 @@ const Navbar = () => {
             {/* ======user menu===== */}
             {account && (
               <div className="userPanel absolute right-0 top-14  rounded  py-5 z-40">
-                <div className="UrersControl account flex gap-4 items-center text-Sada py-2 px-4">
-                  <span className="text-3xl">
-                    <FiUser />
-                  </span>
-                  <h4 className="font-popins  text-xl ">Manage My Account</h4>
-                </div>
+                
+                <Link to={"/Myaccount"}>
+                  <div className="UrersControl account flex gap-4 items-center text-Sada py-2 px-4">
+                    <span className="text-3xl">
+                      <FiUser />
+                    </span>
+                    <h4 className="font-popins  text-xl ">Manage My Account</h4>
+                  </div>
+                </Link>
                 <div className="UrersControl Order flex gap-4 items-center text-Sada py-2 px-4">
                   <span className="text-3xl">
                     <LuShoppingBag />
