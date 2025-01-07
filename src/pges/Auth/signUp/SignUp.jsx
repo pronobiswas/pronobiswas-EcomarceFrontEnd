@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import { signUpSchema } from "./signUpSchema";
 import { axiosInstace } from "../../../helper/axios";
 import signupImage from "./signupImage.jpg";
 import signupBGremove from "./signupBGremove.png";
-import { SuessToast } from "../../../utils/toast";
+import { ErrorToast, SuessToast } from "../../../utils/toast";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
+import signUpAnim from "./signUpAnim.gif"
 
 const validate = (values) => {
   const errors = {};
@@ -38,8 +40,13 @@ const validate = (values) => {
     errors.password = "Required";
   } else if (values.password.length > 20) {
     errors.password = "Must be 20 characters or less";
-  } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/i.test(values.password)) {
-    errors.password = "Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character";
+  } else if (
+    !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/i.test(
+      values.password
+    )
+  ) {
+    errors.password =
+      "Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character";
   }
 
   if (!values.agree) {
@@ -54,6 +61,7 @@ const validate = (values) => {
 const signup = () => {
 
   const navigate = useNavigate();
+  const [signUpAnimation,setSignUpAnimation]= useState(false)
 
   const formik = useFormik({
     initialValues: {
@@ -68,6 +76,7 @@ const signup = () => {
     onSubmit: async (values) => {
       try {
         alert(JSON.stringify(values, null, 2));
+        setSignUpAnimation(true)
         const { firstName, lastName, emailAddress, telePhone, password } =
           values;
 
@@ -77,17 +86,24 @@ const signup = () => {
           emailAddress: emailAddress,
           telePhone: telePhone,
           password: password,
-
         });
 
-        if(responsee){
+        if (responsee) {
           // =====set email address into localStorage=====
-          localStorage.setItem("RegInfo",JSON.stringify(values));
+          localStorage.setItem("RegInfo", JSON.stringify(values));
           SuessToast("Check your Inbox please");
-          setTimeout(()=>{navigate('/otp')},2000)
+          setTimeout(() => {
+            navigate("/otp");
+            setSignUpAnimation(false)
+          }, 2000);
         }
       } catch (error) {
         console.log("submit error", error);
+        console.log("submit error", error.response.data.message);
+        setTimeout(() => {
+          ErrorToast(error?.response?.data?.message)
+          setSignUpAnimation(false)
+        }, 2000);
       }
     },
   });
@@ -95,6 +111,13 @@ const signup = () => {
     <div className="signUpPage  py-20 px-4">
       <div className="container">
         <div className="warpper flex justify-center">
+          {/* ====animation==== */}
+          {
+            signUpAnimation &&
+          <div className="signUpAnim absolute top-0 left-0 w-full h-screen z-40 bg-white flex items-center justify-center ">
+            <img src={signUpAnim} alt="" />
+          </div>
+          }
           {/* ======image Container===== */}
           <div className="imageContainer hidden md:block">
             <img src={signupBGremove} alt="" />
@@ -238,6 +261,12 @@ const signup = () => {
               >
                 Submit
               </button>
+              <div className="flex justify-between flex-wrap px-5">
+                <span>Allredy Have an account?</span>
+                <Link to={"/signin"}>
+                  <span className="text-blue-600 font-popins">Sign In</span>
+                </Link>
+              </div>
             </form>
           </div>
         </div>

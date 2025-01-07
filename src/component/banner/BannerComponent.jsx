@@ -5,13 +5,17 @@ import Slider from "react-slick";
 import { category } from "../../../data.js";
 import { FaAngleRight } from "react-icons/fa";
 import slideImg from "../../../public/SlideImg.png";
-import {useGetAllBannerQuery} from '../../helper/reduxToolkit/apis/Exclusive.Api.js'
+import {
+  useGetAllBannerQuery,
+  useGetAllCategoryQuery,
+} from "../../helper/reduxToolkit/apis/Exclusive.Api.js";
+import LeftSideFilter from "../productComponent/LeftSideFilter.jsx";
 
 const BannerComponent = () => {
-  const [bannerinfo , setbannerinfo]= useState()
-const bannerInfo = useGetAllBannerQuery();
+  const [bannerinfo, setbannerinfo] = useState();
+  const bannerInfo = useGetAllBannerQuery();
   const [currentSlide, setcurrentSlide] = useState(0);
-
+  // ========featch category fdata with rtk query======
   const settings = {
     dots: true,
     // infinite: true,
@@ -82,6 +86,7 @@ const bannerInfo = useGetAllBannerQuery();
               </li>
             ))}
           </ul>
+          
         </div>
         {/* ========slider from react slick===== */}
         <div className="banner pt-10 pl-10 w-[80%]">

@@ -40,7 +40,8 @@ const SignInPage = () => {
         SuessToast("wellcome");
         setTimeout(() => {
           setSubmitting(false);
-          navigate("/");
+          localStorage.setItem("SubscribeUser", JSON.stringify(response.data.data));
+          navigate("/Myaccount");
         }, 1000);
       }
     } catch (error) {
@@ -52,7 +53,7 @@ const SignInPage = () => {
 
   return (
     <div id="LoginPage" className="py-8">
-      <div className="container xl:py-36">
+      <div className="container">
         <BradeCrumb />
         <div className="LoginPage_warpper  flex items-center gap-3">
           {/* =======form warpper==== */}
@@ -121,8 +122,10 @@ const SignInPage = () => {
                           <input type="checkbox" id="ckeck" />
                           <label htmlFor="ckeck">Remember Me</label>
                         </div>
-                        
-                        <span><Link to={"/forgotPassword"}>forgot password?</Link></span>
+
+                        <span>
+                          <Link to={"/forgotPassword"}>forgot password?</Link>
+                        </span>
                       </div>
                       {/* =====submit button===== */}
                       <button
@@ -141,7 +144,7 @@ const SignInPage = () => {
                 <h3>Sign with</h3>
                 {/* ===icon rwarpper=== */}
                 <div>
-                  <ul className="flex gap-4 text-3xl"> 
+                  <ul className="flex gap-4 text-3xl">
                     <li className="cursor-pointer hover:text-5xl transition-all bg-transprent w-12 h-12 center  ">
                       <RiFacebookCircleLine />
                     </li>

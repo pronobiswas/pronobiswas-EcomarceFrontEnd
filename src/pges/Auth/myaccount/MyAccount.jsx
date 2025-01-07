@@ -3,6 +3,9 @@ import BradeCrumb from "../../../component/commonComponent/BradeCrumb";
 import { FaBars } from "react-icons/fa";
 
 const MyAccount = () => {
+    const loggedInuser= JSON.parse(localStorage.getItem('SubscribeUser'))
+    console.log(loggedInuser);
+    
   const [asideMenu, setAsideMenu] = useState("false");
   const handleSidemenu = () => {
     setAsideMenu(!asideMenu);
@@ -15,7 +18,7 @@ const MyAccount = () => {
           <div className="flex items-center justify-between">
             <BradeCrumb />
             <h2 className="acountStyle">
-              Welcome! <span className="text-redDB4444">Md Rimel</span>{" "}
+              Welcome! <span className="text-redDB4444">{loggedInuser.firstName}</span>{" "}
             </h2>
           </div>
           {/* =====content row====== */}

@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { axiosInstace } from "../../helper/axios";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 const MatchOTP = () => {
   const navigate = useNavigate();
   const [userOTP, setUserOTP] = useState("");
   const [emailAddress, SetEmailAddress] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+  const params = useParams()
+  console.log(params);
+  
   // ====handle input changes=====
   const handleChange = (e) => {
     setUserOTP(e.target.value);
@@ -73,6 +76,8 @@ const MatchOTP = () => {
             >
               Verify
             </button>
+
+            
           </div>
         </div>
       </div>

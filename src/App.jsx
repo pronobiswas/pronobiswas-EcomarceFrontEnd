@@ -18,9 +18,9 @@ import CartPage from "./pges/CartPage";
 import SignUp from "./pges/Auth/signUp/SignUp";
 import HorizontalProductCart from "./component/productComponent/HorizontalProductCart";
 import SignInPage from "./pges/Auth/signIn/SignInPage";
-import MatchOTP from "./pges/Auth/MatchOTP";
 import ForgotPasswordPage from "./pges/Auth/ForgotPasswordPage";
 import MyAccount from "./pges/Auth/myaccount/MyAccount";
+import Otp from "./pges/Auth/Otp";
 
 function App() {
   const router = createBrowserRouter(
@@ -38,9 +38,10 @@ function App() {
             <Route path="/MyAccount" element={<MyAccount />} />
 
             <Route path="/cards" element={<HorizontalProductCart />} />
+            <Route path="/signin" element={<SignInPage />} />
           </Route>
-          <Route path="/signin" element={<SignInPage />} />
-          <Route path="/otp" element={<MatchOTP />} />
+          <Route path="/otp" element={<Otp />}/>
+          <Route path="/verifyOTP/:emailAddress" element={<Otp/>} />
           <Route path="/forgotPassword" element={<ForgotPasswordPage />} />
         </Route>
       </>
