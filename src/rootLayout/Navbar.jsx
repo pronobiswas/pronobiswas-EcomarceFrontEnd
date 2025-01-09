@@ -42,7 +42,7 @@ const Navbar = () => {
     {
       id: 3,
       item: "product",
-      nevigationPaths: "/product",
+      nevigationPaths: "/home/product",
     },
     {
       id: 4,

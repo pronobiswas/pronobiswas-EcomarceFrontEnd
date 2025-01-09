@@ -11,16 +11,22 @@ const Otp = () => {
   const [inputerr, setinputerr] = useState(false);
   const navigate = useNavigate();
   const [email, SetEmail] = useState("");
+  const [whereToGo, setWhereToGo] = useState(false);
+  const [actualMail, setActualMail] = useState("");
 
+  // =====preRecugisition after render====
   useEffect(() => {
+    // =====find the user is try to registetion=====
+    SetEmail(JSON.parse(localStorage?.getItem("RegInfo"))?.emailAddress);
     if (inputRef.current[0]) {
       inputRef.current[0].focus();
     }
   }, []);
-
+  // ====handle input=====
   const HandleInputChange = (e, index) => {
     let value = e.target.value;
-    SetEmail(JSON.parse(localStorage.getItem("RegInfo")).emailAddress);
+    // SetEmail(JSON.parse(localStorage.getItem("RegInfo")).emailAddress);
+
     if (isNaN(value)) {
       return setinputerr(true);
     }
@@ -39,6 +45,7 @@ const Otp = () => {
       setinputerr(false);
     }
   };
+  console.log(email);
 
   const HandlekeyDown = (e, index) => {
     if (e.key === "ArrowRight" && index < otp.length - 1) {
@@ -56,19 +63,26 @@ const Otp = () => {
 
   const handleVerifyOtp = async () => {
     try {
-      
       const { emailAddress } = params;
 
       const response = await axiosInstace.post("/otp", {
-        emailAddress: emailAddress || email,
+        emailAddress: emailAddress,
         otp: finalOtp,
-      });      
+      });
       if (response) {
         SuessToast(response.data.message);
-        localStorage.removeItem("RegInfo")
-        setTimeout(()=>{
-          navigate("/signin")
-        },2000)
+
+        if (localStorage.getItem("RegInfo")) {
+          setTimeout(() => {
+            navigate("/signin");
+            localStorage.removeItem("RegInfo");
+          }, 2000);
+        } else {
+          console.log("forgot password theke asche");
+          setTimeout(() => {
+            navigate("/signin/forgotPassword/restPassword");
+          }, 2000);
+        }
       }
     } catch (error) {
       console.error("from opt verification error", error);

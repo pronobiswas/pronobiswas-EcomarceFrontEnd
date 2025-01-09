@@ -1,25 +1,17 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { axiosInstace } from "../../../helper/axios";
-import { ErrorToast, SuessToast } from "../../../utils/toast";
-import { useNavigate } from "react-router";
-import BradeCrumb from "../../../component/commonComponent/BradeCrumb";
-import { RiFacebookCircleLine } from "react-icons/ri";
-import { FaGoogle, FaInstagram } from "react-icons/fa";
-import { CiTwitter } from "react-icons/ci";
-import signinImg from "./signin.jpg";
-import signIn1 from "./signIn1.png";
-import blockGIF from "./blockGIF.gif";
-import { Link } from "react-router-dom";
+import BradeCrumb from "../../component/commonComponent/BradeCrumb";
 
-const SignInPage = () => {
+const ResetPassword = () => {
   const navigate = useNavigate();
+  // ====initilize value=====
   const initialValues = {
     email: "",
     password: "",
   };
-
+  //   ====validation schema====
   const validationSchema = Yup.object({
     email: Yup.string()
       .email("Invalid email address")
@@ -28,22 +20,27 @@ const SignInPage = () => {
       .min(6, "Password must be at least 6 characters")
       .required("Password is required"),
   });
-
+  // ========onsubmit=======
   const onSubmit = async (values, { setSubmitting }) => {
     try {
-      const response = await axiosInstace.post("/login", {
-        emailAddress: values.email,
-        password: values.password,
-      });
-      console.log(response.data);
-      if (response.data) {
-        SuessToast("wellcome");
-        setTimeout(() => {
-          setSubmitting(false);
-          localStorage.setItem("SubscribeUser", JSON.stringify(response.data.data));
-          navigate("/Myaccount");
-        }, 1000);
-      }
+        console.log("hi");
+        
+    //   const response = await axiosInstace.post("/login", {
+    //     emailAddress: values.email,
+    //     password: values.password,
+    //   });
+    //   console.log(response.data);
+    //   if (response.data) {
+    //     SuessToast("wellcome");
+    //     setTimeout(() => {
+    //       setSubmitting(false);
+    //       localStorage.setItem(
+    //         "SubscribeUser",
+    //         JSON.stringify(response.data.data)
+    //       );
+    //       navigate("/Myaccount");
+    //     }, 1000);
+    //   }
     } catch (error) {
       if (error.response.data) {
         ErrorToast(error.response.data.message);
@@ -52,15 +49,15 @@ const SignInPage = () => {
   };
 
   return (
-    <div id="LoginPage" className="py-8">
+    <div className="py-12">
       <div className="container">
-        <BradeCrumb />
+        <BradeCrumb/>
         <div className="LoginPage_warpper  flex items-center gap-3">
           {/* =======form warpper==== */}
           <div className="w-full md:w-1/2 p-5 rounded flex justify-center md:justify-end">
             {/* ====formBox=== */}
             <div className=" w-full max-w-96 bg-[#89b1df50] px-5 py-12 rounded border-2 border-sky-500  shadow-inner">
-              <h1 className="text-3xl font-inter mb-6">Sign In here</h1>
+              
 
               {/* ====Formik form container====== */}
               <div className=" bg-transparent">
@@ -124,7 +121,7 @@ const SignInPage = () => {
                         </div>
 
                         <span>
-                          <Link to={"/signin/forgotPassword"}>forgot password?</Link>
+                          <Link to={"/forgotPassword"}>forgot password?</Link>
                         </span>
                       </div>
                       {/* =====submit button===== */}
@@ -140,39 +137,19 @@ const SignInPage = () => {
                 </Formik>
               </div>
 
-              <div className="mt-5 flex flex-col items-center gap-4 justify-center">
-                <h3>Sign with</h3>
-                {/* ===icon rwarpper=== */}
-                <div>
-                  <ul className="flex gap-4 text-3xl">
-                    <li className="cursor-pointer hover:text-5xl transition-all bg-transprent w-12 h-12 center  ">
-                      <RiFacebookCircleLine />
-                    </li>
-                    <li className="cursor-pointer hover:text-5xl transition-all bg-transprent w-12 h-12 center ">
-                      <FaGoogle />
-                    </li>
-                    <li className="cursor-pointer hover:text-5xl transition-all bg-transprent w-12 h-12 center ">
-                      <CiTwitter />
-                    </li>
-                    <li className="cursor-pointer hover:text-5xl transition-all bg-transprent w-12 h-12 center ">
-                      <FaInstagram />
-                    </li>
-                  </ul>
-                </div>
-              </div>
+             
             </div>
           </div>
 
           {/* ======imageContainer======= */}
           <div className="hidden  md:block w-1/2">
-            {/* <img src={signinImg} alt="imag" /> */}
-            {/* <img src={blockGIF} alt="imag" /> */}
-            <img src={signIn1} alt="imag" className="h-[500px]" />
+            {/* <img src={signIn1} alt="imag" className="h-[500px]" /> */}
           </div>
+
         </div>
       </div>
     </div>
   );
 };
 
-export default SignInPage;
+export default ResetPassword;

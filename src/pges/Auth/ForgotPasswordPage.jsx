@@ -5,9 +5,10 @@ import { axiosInstace } from "../../helper/axios";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ErrorToast, SuessToast } from "../../utils/toast";
+import BradeCrumb from "../../component/commonComponent/BradeCrumb";
 
 const ForgotPasswordPage = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const initialValues = {
     emailAddress: "",
   };
@@ -18,20 +19,25 @@ const ForgotPasswordPage = () => {
   });
   const onSubmit = async (values) => {
     try {
-      
-      let emailAddress =values.emailAddress 
-      const response = await axiosInstace.post("/forgotpassword", {emailAddress});
+      let emailAddress = values.emailAddress;
+      const response = await axiosInstace.post("/forgotpassword", {
+        emailAddress,
+      });
       response?.data && SuessToast(response?.data.message);
-      localStorage.setItem("RegInfo",JSON.stringify(values));
-      navigate('/otp');
-
+      // ==pass the mailaddress as ====
+      navigate(`/otp/${emailAddress}`);
     } catch (error) {
-      error?.response?.data && ErrorToast(error?.response?.data?.message)
+      console.log(error);
+
+      error?.response?.data && ErrorToast(error?.response?.data?.message);
     }
   };
 
   return (
     <div id="forgotPasswordPage" className="container py-12">
+      <div className="w-full py-8">
+        <BradeCrumb />
+      </div>
       <h1 className="font-inter font-semibold text-[4vw]">
         Enter your Email here
       </h1>
@@ -57,7 +63,11 @@ const ForgotPasswordPage = () => {
                 className="w-full px-3 py-2 border-b-2 border-transparent focus:outline-none focus:border-sky-500 transition duration-300 rounded"
               />
             </div>
-            <ErrorMessage name="emailAddress" component="div" className="error" />
+            <ErrorMessage
+              name="emailAddress"
+              component="div"
+              className="error"
+            />
             <button
               type="submit"
               className="px-12 py-2 font-popins text-xl bg-sky-500 text-Sada rounded mt-5"
