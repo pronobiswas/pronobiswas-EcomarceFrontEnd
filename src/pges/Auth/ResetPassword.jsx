@@ -1,64 +1,71 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import BradeCrumb from "../../component/commonComponent/BradeCrumb";
 
 const ResetPassword = () => {
+  const params = useParams();
+  const [passError, setPassError] = useState("");
+
   const navigate = useNavigate();
+  // useEffect(()=>{
+  //   SetEmail(JSON.parse(localStorage?.getItem("RegInfo"))?.emailAddress);
+  // },[])
   // ====initilize value=====
   const initialValues = {
-    email: "",
     password: "",
+    confirmPassword: "",
   };
   //   ====validation schema====
   const validationSchema = Yup.object({
-    email: Yup.string()
-      .email("Invalid email address")
-      .required("Email is required"),
     password: Yup.string()
+      .min(6, "Password must be at least 6 characters")
+      .required("Password is required"),
+
+    confirmPassword: Yup.string()
       .min(6, "Password must be at least 6 characters")
       .required("Password is required"),
   });
   // ========onsubmit=======
   const onSubmit = async (values, { setSubmitting }) => {
     try {
-        console.log("hi");
-        
-    //   const response = await axiosInstace.post("/login", {
-    //     emailAddress: values.email,
-    //     password: values.password,
-    //   });
-    //   console.log(response.data);
-    //   if (response.data) {
-    //     SuessToast("wellcome");
-    //     setTimeout(() => {
-    //       setSubmitting(false);
-    //       localStorage.setItem(
-    //         "SubscribeUser",
-    //         JSON.stringify(response.data.data)
-    //       );
-    //       navigate("/Myaccount");
-    //     }, 1000);
-    //   }
+
+      if (values.password !== values.confirmPassword) {
+        setPassError("Password does not match");
+      }else{
+        setPassError("");
+      }
+
+        const response = await axiosInstace.post("/login", {
+          emailAddress: params.emailAddress,
+          password: values.password,
+        });
+        console.log(response.data);
+        if (response?.data) {
+          SuessToast("Password reset successfully");
+        }
     } catch (error) {
       if (error.response.data) {
         ErrorToast(error.response.data.message);
       }
+    }finally{
+      setTimeout(() => {
+        setSubmitting(false);
+        navigate("/signin");
+      }, 1000);
     }
   };
 
   return (
     <div className="py-12">
       <div className="container">
-        <BradeCrumb/>
+        <BradeCrumb />
         <div className="LoginPage_warpper  flex items-center gap-3">
           {/* =======form warpper==== */}
           <div className="w-full md:w-1/2 p-5 rounded flex justify-center md:justify-end">
             {/* ====formBox=== */}
             <div className=" w-full max-w-96 bg-[#89b1df50] px-5 py-12 rounded border-2 border-sky-500  shadow-inner">
-              
-
               {/* ====Formik form container====== */}
               <div className=" bg-transparent">
                 <Formik
@@ -68,28 +75,6 @@ const ResetPassword = () => {
                 >
                   {({ isSubmitting }) => (
                     <Form className="flex flex-col gap-4">
-                      <div className="w-full border border-sky-500 shadow-inner rounded relative bg-Sada ">
-                        <label
-                          htmlFor="email"
-                          className="absolute bg-Sada -top-2 left-3 border-[1px] border-sky-500 text-[10px] px-1 rounded"
-                        >
-                          Email
-                        </label>
-                        <Field
-                          type="email"
-                          id="email"
-                          name="email"
-                          className="w-full px-3 py-2 border-b-2 border-transparent focus:outline-none focus:border-red-500 transition duration-300 rounded"
-                        />
-                      </div>
-                      {/* ====errorMessage=== */}
-                      <span className="text-red-500">
-                        <ErrorMessage
-                          name="email"
-                          component="div"
-                          className="error"
-                        />
-                      </span>
                       {/* =====password=== */}
                       <div className="w-full border border-sky-500 shadow-inner rounded relative bg-Sada">
                         <label
@@ -113,17 +98,27 @@ const ResetPassword = () => {
                           className="error"
                         />
                       </span>
-                      {/* ======remmber or forgot====== */}
-                      <div className="flex justify-between">
-                        <div>
-                          <input type="checkbox" id="ckeck" />
-                          <label htmlFor="ckeck">Remember Me</label>
-                        </div>
 
-                        <span>
-                          <Link to={"/forgotPassword"}>forgot password?</Link>
-                        </span>
+                      {/* =====confirm password=== */}
+                      <div className="w-full border border-sky-500 shadow-inner rounded relative bg-Sada">
+                        <label
+                          htmlFor="confirmPassword"
+                          className="absolute bg-Sada -top-2 left-3 border-[1px] border-sky-500 text-[10px] px-1 rounded"
+                        >
+                          Confirm Password
+                        </label>
+                        <Field
+                          type="password"
+                          id="confirmPassword"
+                          name="confirmPassword"
+                          className="w-full px-3 py-2 border-b-2 border-transparent focus:outline-none focus:border-red-500 transition duration-300 rounded"
+                        />
                       </div>
+                      {/* ====errorMessage==== */}
+                      <span className="text-red-500">
+                        {passError && passError}
+                      </span>
+
                       {/* =====submit button===== */}
                       <button
                         type="submit"
@@ -136,8 +131,6 @@ const ResetPassword = () => {
                   )}
                 </Formik>
               </div>
-
-             
             </div>
           </div>
 
@@ -145,7 +138,6 @@ const ResetPassword = () => {
           <div className="hidden  md:block w-1/2">
             {/* <img src={signIn1} alt="imag" className="h-[500px]" /> */}
           </div>
-
         </div>
       </div>
     </div>

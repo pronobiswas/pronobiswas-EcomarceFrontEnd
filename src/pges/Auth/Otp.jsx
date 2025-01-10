@@ -45,7 +45,7 @@ const Otp = () => {
       setinputerr(false);
     }
   };
-  console.log(email);
+
 
   const HandlekeyDown = (e, index) => {
     if (e.key === "ArrowRight" && index < otp.length - 1) {
@@ -80,7 +80,7 @@ const Otp = () => {
         } else {
           console.log("forgot password theke asche");
           setTimeout(() => {
-            navigate("/signin/forgotPassword/restPassword");
+            navigate(`/restPassword/${emailAddress}`);
           }, 2000);
         }
       }
