@@ -21,6 +21,7 @@ import ForgotPasswordPage from "./pges/Auth/ForgotPasswordPage";
 import MyAccount from "./pges/Auth/myaccount/MyAccount";
 import Otp from "./pges/Auth/Otp";
 import ResetPassword from "./pges/Auth/ResetPassword";
+import CheckoutPage from "./pges/CheckoutPage";
 
 function App() {
   const router = createBrowserRouter(
@@ -41,6 +42,7 @@ function App() {
             <Route path="/cart" element={<CartPage />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/MyAccount" element={<MyAccount />} />
+            <Route path="/checkOut" element={<CheckoutPage />} />
             <Route path="/signin" element={<SignInPage />} />
           </Route>
           <Route path="/otp" element={<Otp />} />
@@ -51,6 +53,10 @@ function App() {
           />
           <Route
             path="restPassword/:emailAddress"
+            element={<ResetPassword />}
+          />
+          <Route
+            path="restPassword"
             element={<ResetPassword />}
           />
         </Route>
