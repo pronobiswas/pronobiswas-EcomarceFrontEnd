@@ -60,7 +60,6 @@ export const cartSlice = createSlice({
         InfoToast(`${action.payload.title} Decrement`);
       }
     },
-    
     // ======getTotal======
     getTotal: (state, action) => {
       const cartAllItemReducer = state.value.reduce(

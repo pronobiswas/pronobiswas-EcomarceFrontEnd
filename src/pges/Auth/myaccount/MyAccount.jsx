@@ -5,6 +5,7 @@ import AddressBook from "./component/AddressBook";
 import MyPaymentOption from "./component/MyPaymentOption";
 import MyReturn from "./component/MyReturn";
 import MyCanceletionOption from "./component/MyCanceletionOption";
+import WishListComponent from "./component/WishListComponent";
 
 const MyAccount = () => {
   const loggedInuser = JSON.parse(localStorage.getItem("SubscribeUser"));
@@ -13,11 +14,11 @@ const MyAccount = () => {
     setAsideMenu(!asideMenu);
   };
   const [myProfile, setMyProfile] = useState(true);
-  const [address, setAddress] = useState("false");
-  const [mypement, setMypement] = useState("false");
-  const [myreturn, setMyreturn] = useState("false");
-  const [myCanceletion, setMyCanceletion] = useState("false");
-  const [myWishList, setMyWishList] = useState("false");
+  const [address, setAddress] = useState(false);
+  const [mypement, setMypement] = useState(false);
+  const [myreturn, setMyreturn] = useState(false);
+  const [myCanceletion, setMyCanceletion] = useState(false);
+  const [myWishList, setMyWishList] = useState(false);
   // ===handle click===
   const handleMyProfile = () => {
     setMyProfile(true)
@@ -66,6 +67,14 @@ const MyAccount = () => {
     setMyreturn(false);
     setMyCanceletion(true);
     setMyWishList(false);
+  }
+  const handleMyWishlist = ()=>{
+    setMyProfile(false)
+    setAddress(false);
+    setMypement(false);
+    setMyreturn(false);
+    setMyCanceletion(false);
+    setMyWishList(true);
   }
   return (
     <div>
@@ -125,7 +134,7 @@ const MyAccount = () => {
               </div>
               {/* ==wishlist== */}
               <div className="mt-6">
-                <h1 className="accountStyle text-[16px] font-medium">
+                <h1 onClick={handleMyWishlist} className="accountStyle text-[16px] font-medium cursor-pointer">
                   My WishList
                 </h1>
               </div>
@@ -282,6 +291,7 @@ const MyAccount = () => {
               {mypement && <MyPaymentOption/>}
               {myreturn && <MyReturn/>}
               {myCanceletion && <MyCanceletionOption/>}
+              {myWishList && <WishListComponent/>}
             </div>
           </div>
         </div>

@@ -7,6 +7,7 @@ import useCalculateDiscount from "../../helper/hooks/useCalculateDiscount";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addtoCart, getTotal } from "../../helper/reduxToolkit/slice/cartSlice";
+import { addToWishList } from "../../helper/reduxToolkit/slice/wishListSlice";
 
 const ProductCard = ({ itemData, isActive }) => {
   const dispatch = useDispatch();
@@ -17,6 +18,10 @@ const ProductCard = ({ itemData, isActive }) => {
     dispatch(addtoCart(itemData));
     dispatch(getTotal());
   };
+  // ====add to wishlist====
+  const handleAddToWishList = (itemData)=>{
+    dispatch(addToWishList(itemData))
+  }
   return (
     <>
       {/* ====fullcard==== */}
@@ -37,8 +42,8 @@ const ProductCard = ({ itemData, isActive }) => {
                   </span>
                 )}
                 {/* ====icons== */}
-                <div className="">
-                  <p className="text-base bg-slate-50 px-1 py-1 rounded-full cursor-pointer hover:text-Sada hover:bg-Secondary2">
+                <div  className="">
+                  <p onClick={()=>handleAddToWishList(itemData)} className="text-base bg-slate-50 px-1 py-1 rounded-full cursor-pointer hover:text-Sada hover:bg-Secondary2">
                     <FaRegHeart />
                   </p>
                 </div>
