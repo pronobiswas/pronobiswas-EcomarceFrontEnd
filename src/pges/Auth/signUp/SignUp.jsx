@@ -7,7 +7,7 @@ import signupBGremove from "./signupBGremove.png";
 import { ErrorToast, SuessToast } from "../../../utils/toast";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import signUpAnim from "./signUpAnim.gif"
+import signUpAnim from "./signUpAnim.gif";
 
 const validate = (values) => {
   const errors = {};
@@ -59,9 +59,8 @@ const validate = (values) => {
 };
 
 const signup = () => {
-
   const navigate = useNavigate();
-  const [signUpAnimation,setSignUpAnimation]= useState(false)
+  const [signUpAnimation, setSignUpAnimation] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -76,11 +75,11 @@ const signup = () => {
     onSubmit: async (values) => {
       try {
         alert(JSON.stringify(values, null, 2));
-        setSignUpAnimation(true)
+        setSignUpAnimation(true);
         const { firstName, lastName, emailAddress, telePhone, password } =
           values;
 
-        const responsee = await axiosInstace.post("/regestetion", {
+        const response = await axiosInstace.post("/regestetion", {
           firstName: firstName,
           lastName: lastName,
           emailAddress: emailAddress,
@@ -88,21 +87,21 @@ const signup = () => {
           password: password,
         });
 
-        if (responsee) {
+        if (response) {
           // =====set email address into localStorage=====
           localStorage.setItem("RegInfo", JSON.stringify(values));
           SuessToast("Check your Inbox please");
           setTimeout(() => {
-            navigate("/otp");
-            setSignUpAnimation(false)
+            navigate(`/otp/${emailAddress}`);
+            setSignUpAnimation(false);
           }, 2000);
         }
       } catch (error) {
         console.log("submit error", error);
         console.log("submit error", error.response.data.message);
         setTimeout(() => {
-          ErrorToast(error?.response?.data?.message)
-          setSignUpAnimation(false)
+          ErrorToast(error?.response?.data?.message);
+          setSignUpAnimation(false);
         }, 2000);
       }
     },
@@ -112,12 +111,11 @@ const signup = () => {
       <div className="container">
         <div className="warpper flex justify-center">
           {/* ====animation==== */}
-          {
-            signUpAnimation &&
-          <div className="signUpAnim absolute top-0 left-0 w-full h-screen z-40 bg-white flex items-center justify-center ">
-            <img src={signUpAnim} alt="" />
-          </div>
-          }
+          {signUpAnimation && (
+            <div className="signUpAnim absolute top-0 left-0 w-full h-screen z-40 bg-white flex items-center justify-center ">
+              <img src={signUpAnim} alt="" />
+            </div>
+          )}
           {/* ======image Container===== */}
           <div className="imageContainer hidden md:block">
             <img src={signupBGremove} alt="" />

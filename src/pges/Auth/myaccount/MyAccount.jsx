@@ -163,6 +163,7 @@ const MyAccount = () => {
                           type="password"
                           id="password"
                           name="password"
+                          placeholder={loggedInuser?loggedInuser.firstName:""}
                           className="w-full px-3 py-2 border-b-2 border-transparent focus:outline-none focus:border-DhusorLekhoni transition duration-300 rounded"
                         />
                       </div>
@@ -177,6 +178,7 @@ const MyAccount = () => {
                           type="text"
                           id="lastName"
                           name="lastName"
+                          placeholder={loggedInuser?loggedInuser.lastName:""}
                           className="w-full px-3 py-2 border-b-2 border-transparent focus:outline-none focus:border-DhusorLekhoni transition duration-300 rounded"
                         />
                       </div>
@@ -195,20 +197,22 @@ const MyAccount = () => {
                           type="email"
                           id="emailAddress"
                           name="emailAddress"
+                          placeholder={loggedInuser?loggedInuser.emailAddress:""}
                           className="w-full px-3 py-2 border-b-2 border-transparent focus:outline-none focus:border-DhusorLekhoni transition duration-300 rounded"
                         />
                       </div>
                       <div className="w-1/2 border border-Dhusor-Lekhoni shadow-inner rounded relative bg-Sada">
                         <label
-                          htmlFor="telephone"
+                          htmlFor="telePhone"
                           className="absolute bg-Sada -top-2 left-3 border-[1px] border-Dhusor-Lekhoni text-[10px] px-1 rounded"
                         >
                           Phone number
                         </label>
                         <input
                           type="text"
-                          id="telephone"
-                          name="telephone"
+                          id="telePhone"
+                          name="telePhone"
+                          placeholder={loggedInuser?loggedInuser.telePhone:""}
                           className="w-full px-3 py-2 border-b-2 border-transparent focus:outline-none focus:border-DhusorLekhoni transition duration-300 rounded"
                         />
                       </div>

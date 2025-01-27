@@ -35,13 +35,15 @@ const SignInPage = () => {
         emailAddress: values.email,
         password: values.password,
       });
-      console.log(response.data);
       if (response.data) {
         SuessToast("wellcome");
         setTimeout(() => {
           setSubmitting(false);
-          localStorage.setItem("SubscribeUser", JSON.stringify(response.data.data));
-          navigate("/Myaccount");
+          localStorage.setItem(
+            "SubscribeUser",
+            JSON.stringify(response.data.data)
+          );
+          // navigate("/Myaccount");
         }, 1000);
       }
     } catch (error) {
@@ -124,7 +126,9 @@ const SignInPage = () => {
                         </div>
 
                         <span>
-                          <Link to={"/signin/forgotPassword"}>forgot password?</Link>
+                          <Link to={"/signin/forgotPassword"}>
+                            forgot password?
+                          </Link>
                         </span>
                       </div>
                       {/* =====submit button===== */}

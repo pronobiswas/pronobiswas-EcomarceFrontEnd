@@ -65,7 +65,7 @@ const Otp = () => {
     try {
       const { emailAddress } = params;
 
-      const response = await axiosInstace.post("/otp", {
+      const response = await axiosInstace.post(`/otp/${emailAddress}}`, {
         emailAddress: emailAddress,
         otp: finalOtp,
       });

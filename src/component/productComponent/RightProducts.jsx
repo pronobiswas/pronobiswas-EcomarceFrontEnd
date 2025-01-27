@@ -88,12 +88,15 @@ const RightProducts = ({ categoryID }) => {
               .slice(page * 9 - 9, page * pagePerShow)
               .map((item, index) => (
                 <li
-                  key={index}
+                
+                  key={item._id}
                   className={`${
                     isActive ? "w-full" : "w-initial"
                   }`}
                 >
+                 
                   <ProductCard itemData={item} isActive={isActive} />
+                  
                 </li>
               ))
           )}

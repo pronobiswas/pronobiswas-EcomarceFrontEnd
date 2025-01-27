@@ -24,6 +24,8 @@ import ResetPassword from "./pges/Auth/ResetPassword";
 import CheckoutPage from "./pges/CheckoutPage";
 
 function App() {
+  const loggedInUser = localStorage.getItem("SubscribeUser");
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
@@ -36,13 +38,18 @@ function App() {
               path="home/product/productDetails"
               element={<SingleProductPage />}
             />
-            <Route path="/auth/login" element={<LogInPage />} />
             <Route path="/product" element={<ProductsPage />} />
             <Route path="/product/:id" element={<SingleProductPage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/MyAccount" element={<MyAccount />} />
-            <Route path="/checkOut" element={<CheckoutPage />} />
+            <Route path="/MyAccount/cart" element={<CartPage />} />
+            <Route path="/MyAccount/cart/checkOut" element={<CheckoutPage />} />
+            <Route path="/MyAccount/cart/checkOut/:id" element={<CheckoutPage />} />
+            {/* <Route
+              path="/signin"
+              element={loggedInUser ? <SignUp /> : <SignInPage />}
+            /> */}
             <Route path="/signin" element={<SignInPage />} />
           </Route>
           <Route path="/otp" element={<Otp />} />
@@ -55,10 +62,7 @@ function App() {
             path="restPassword/:emailAddress"
             element={<ResetPassword />}
           />
-          <Route
-            path="restPassword"
-            element={<ResetPassword />}
-          />
+          <Route path="restPassword" element={<ResetPassword />} />
         </Route>
       </>
     )

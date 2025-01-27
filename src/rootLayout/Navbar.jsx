@@ -108,7 +108,7 @@ const Navbar = () => {
               </span>
               {/* ----cart Icon---- */}
               <Link
-                to={"/cart"}
+                to={"/MyAccount/cart"}
                 className="inline-block amount px-1 py-1 bg-slate-300 rounded hover:rounded-full hover:text-Sada hover:bg-Secondary2 cursor-pointer"
                 data-cartTotalItem={totalProduct}
               >

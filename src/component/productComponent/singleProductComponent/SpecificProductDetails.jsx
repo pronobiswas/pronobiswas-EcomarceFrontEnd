@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaBangladeshiTakaSign, FaMinus, FaPlus, FaRegHeart, FaTruckFast } from "react-icons/fa6";
 import StarComponent from "../../StarComponent";
 import { IoSyncOutline } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
+// ########SpecificProductDetails#######
+// ########SpecificProductDetails#######
+// ########SpecificProductDetails#######
 const SpecificProductDetails = ({ productData }) => {
-  // console.log("SpecificProductDetails", productData);
+  const navigate = useNavigate()
+  const [productQuantity,setProductQuantity] = useState(1)
   const sizes = [
     { id: 1, size: "XS" },
     { id: 2, size: "S" },
@@ -12,6 +17,17 @@ const SpecificProductDetails = ({ productData }) => {
     { id: 4, size: "L" },
     { id: 5, size: "XL" },
   ];
+  const incrementQuantity =()=>{
+    setProductQuantity(productQuantity + 1)
+  }
+  const decrementQuantity =()=>{
+    if(productQuantity > 1){
+      setProductQuantity(productQuantity - 1 )
+    }
+  }
+  const handleOrderBTN = ()=>{
+    navigate(`/MyAccount/cart/checkOut/${productData._id}`)
+  }
 
   return (
     <div className="w-full">
@@ -123,23 +139,23 @@ const SpecificProductDetails = ({ productData }) => {
           <div className="flex gap-2">
             {/* ---quantity--- */}
             <div className=" border border-1 border-gray-500 rounded-md flex ">
-              <div className="w-8 h-10 flex items-center justify-center  hover:bg-red-500 hover:text-white cursor-pointer ">
+              <div className="w-8 h-10 flex items-center justify-center  hover:bg-red-500 hover:text-white cursor-pointer " onClick={decrementQuantity}>
                 <span className="text-2xl">
                 <FaMinus />
                 </span>
               </div>
               <div className="w-20 h-10 flex items-center justify-center text-xl border border-y-0 border-gray-400">
-                2
+                {productQuantity}
               </div>
 
-              <div className="w-8 h-10 flex items-center justify-center  hover:bg-red-500 hover:text-white cursor-pointer ">
+              <div className="w-8 h-10 flex items-center justify-center  hover:bg-red-500 hover:text-white cursor-pointer" onClick={incrementQuantity}>
                 <span className="text-2xl">
                   <FaPlus />
                 </span>
               </div>
             </div>
             {/* ---order Button---- */}
-            <div className="w-32 flex items-center justify-center bg-Secondary2 text-Sada rounded-md cursor-pointer">
+            <div className="w-32 flex items-center justify-center bg-Secondary2 text-Sada rounded-md cursor-pointer" onClick={handleOrderBTN}>
               {" "}
               Order Now
             </div>

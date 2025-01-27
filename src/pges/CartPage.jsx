@@ -9,8 +9,10 @@ import {
   getTotal,
 } from "../helper/reduxToolkit/slice/cartSlice";
 import { MdOutlineCancel } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
+  const navigate=useNavigate()
   const dispatch = useDispatch();
   // ===inovoke getTotal===
   useEffect(() => {
@@ -30,6 +32,12 @@ const CartPage = () => {
   const handleDecrement = (item) => {
     dispatch(decrementCart(item));
   };
+  const handleRetunBtn = ()=>{
+    navigate('/product')
+  }
+  const processToCheckout = ()=>{
+    navigate('/MyAccount/cart/checkOut')
+  }
   return (
     <div>
       <div className="container py-10">
@@ -125,7 +133,8 @@ const CartPage = () => {
         {/* button */}
         <div className="mt-10">
           <div className="flex items-center justify-between">
-            <button className="px-[48px] py-[16px] bg-transparent  text-text_black000000 text-[18px] font-medium font-popins border-[2px] border-gray-300 rounded">
+
+            <button onClick={handleRetunBtn} className="px-[48px] py-[16px] bg-transparent  text-text_black000000 text-[18px] font-medium font-popins border-[2px] border-gray-300 rounded">
               Return To Shop
             </button>
 
@@ -179,7 +188,7 @@ const CartPage = () => {
               </div>
             </div>
             <div className="w-full  flex justify-center mt-10">
-              <button className="px-[48px] py-[12px] bg-redDB4444  text-white_FFFFFF text-[18px] font-medium font-popins rounded">
+              <button onClick={processToCheckout} className="px-[48px] py-[12px] bg-redDB4444  text-white_FFFFFF text-[18px] font-medium font-popins rounded">
                 Procees to checkout
               </button>
             </div>

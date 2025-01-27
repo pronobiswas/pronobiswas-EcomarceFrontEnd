@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const ItemCard = ({ itemData }) => {
   return (
     // =====main card======
-    <Link to={`/product/${itemData._id}`}>
+    <Link to={`/product/${itemData?._id}`}>
       <div className="w-60 group hover:cursor-pointer pb-10 transition-all duration-300">
         <div className="w-full h-60 flex flex-col bg-AbchaSada relative">
           {/* ======discount persentences====== */}

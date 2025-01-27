@@ -7,14 +7,13 @@ import BradeCrumb from "../component/commonComponent/BradeCrumb";
 const ProductsPage = () => {
   // ========featch category fdata with rtk query======
   const { data, isLoading, error } = useGetAllCategoryQuery();
-  const [categoryID , setCategoryID] = useState("");
+  const [categoryID, setCategoryID] = useState("");
 
   // =======categoryId function========
-  const categoryId = (e)=>{
-    setCategoryID(e)
-  }
-  
-  
+  const categoryId = (e) => {
+    setCategoryID(e);
+  };
+
   return (
     <div className="container  p-5 ">
       {/* =========breadCrumb===== */}
@@ -30,8 +29,10 @@ const ProductsPage = () => {
               <ul className="flex flex-col gap-2">
                 {Array(7)
                   .fill("")
-                  .map(() => (
-                    <li className="w-full h-8 bg-slate-700 rounded"></li>
+                  .map((index) => (
+                    <div key={index}>
+                      <li className="w-full h-8 bg-slate-700 rounded"></li>
+                    </div>
                   ))}
               </ul>
             </>
